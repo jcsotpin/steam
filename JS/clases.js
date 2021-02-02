@@ -7,50 +7,50 @@ class Juego {
         this.año_lanzamiento = año_lanzamiento;
         this.precio = precio;
         this.pegi = pegi;
-    }   
+    }
 
 
-     //Id Juego
-     getId_juego() {
+    //Id Juego
+    getId_juego() {
         return this.id_juego;
     }
-    setId_juego(id_juego){
-        this.id_juego= id_juego;
-    }
-    //Titulo
+    setId_juego(id_juego) {
+            this.id_juego = id_juego;
+        }
+        //Titulo
     getTitulo() {
         return this.titulo;
     }
-    setTitulo(titulo){
-        this.titulo= titulo;
-    }
-    //Genero
+    setTitulo(titulo) {
+            this.titulo = titulo;
+        }
+        //Genero
     getGenero() {
         return this.id_juego;
     }
-    setGenero(genero){
-        this.genero= genero;
-    }
-    //Año lanzamiento
+    setGenero(genero) {
+            this.genero = genero;
+        }
+        //Año lanzamiento
     getAño_lanzamiento() {
         return this.año_lanzamiento;
     }
-    setAño_lanzamiento(genero){
-        this.año_lanzamiento= año_lanzamiento;
-    }
-    //Precio
+    setAño_lanzamiento(genero) {
+            this.año_lanzamiento = año_lanzamiento;
+        }
+        //Precio
     getPrecioo() {
         return this.precio;
     }
-    setPrecio(precio){
-        this.precio= precio;
-    }
+    setPrecio(precio) {
+            this.precio = precio;
+        }
         //Pegi
-        getPegi() {
+    getPegi() {
         return this.pegi;
     }
-    setPegi(pegi){
-        this.pegi= pegi;
+    setPegi(pegi) {
+        this.pegi = pegi;
     }
 
     toHTMLRow() {
@@ -78,7 +78,7 @@ class Juego {
     }
 
 }
-   
+
 
 
 class Cliente {
@@ -148,9 +148,9 @@ class Cliente {
     }
 
 }
-class Compra{
+class Compra {
 
-    constructor(sIdCompra, sIdCliente, sIdJuego, dFecha, dCosteCompra){
+    constructor(sIdCompra, sIdCliente, sIdJuego, dFecha, dCosteCompra) {
 
         this.idCompra = sIdCompra;
         this.idCliente = sIdCliente;
@@ -162,20 +162,20 @@ class Compra{
     }
 
 }
-Compra.prototype.toHTMLRow = function (){
+Compra.prototype.toHTMLRow = function() {
     let sFila = "<tr>";
-    sFila +="<td>" + this.idCompra + "</td>";
-    sFila +="<td>" + this.idCliente + "</td>";
-    sFila +="<td>" + this.idJuego + "</td>";
-    sFila +="<td>" + this.fecha + "</td>";
-    sFila +="<td>" + this.costeCompra + "</td>";
+    sFila += "<td>" + this.idCompra + "</td>";
+    sFila += "<td>" + this.idCliente + "</td>";
+    sFila += "<td>" + this.idJuego + "</td>";
+    sFila += "<td>" + this.fecha + "</td>";
+    sFila += "<td>" + this.costeCompra + "</td>";
 
     return sFila;
 }
 
-class Subscripcion{
+class Subscripcion {
 
-    constructor(sIdSubscripcion, dFechaExp, dPrecio){
+    constructor(sIdSubscripcion, dFechaExp, dPrecio) {
 
         this.idSubscripcion = sIdSubscripcion;
         this.fechaExp = dFechaExp;
@@ -183,32 +183,36 @@ class Subscripcion{
     }
 }
 
-Subscripcion.prototype.toHTMLRow = function(){
+Subscripcion.prototype.toHTMLRow = function() {
 
-    let sFila = "<tr>";
-    sFila +="<td>" + this.idSubscripcion + "</td>";
-    sFila +="<td>" + this.fechaExp + "</td>";
-    sFila +="<td>" + this.precio + "</td>";
-   
+        let sFila = "<tr>";
+        sFila += "<td>" + this.idSubscripcion + "</td>";
+        sFila += "<td>" + this.fechaExp + "</td>";
+        sFila += "<td>" + this.precio + "</td>";
 
-    return sFila;  
-}
-//Clase Tienda
-class Tienda{
-    constructor(){
-        this.juegos = [];
-        this.clientes = [];
+
+        return sFila;
     }
-    //Función para añadir juegos
-    registrarJuego(){
+    //Clase Tienda
+class Tienda {
+    constructor() {
+            this.juegos = [];
+            this.clientes = [];
+        }
+        //Función para añadir juegos
+    registrarJuego(juego) {
 
-    }
-    //Función para añadir nuevos clientes
-    registrarCliente(){
+            this.juegos.push(juego);
 
-    }
-    //Funcion para listar los juegos
-    listarJuegos(){
+        }
+        //Función para añadir nuevos clientes
+    registrarCliente(cliente) {
+
+            this.clientes.push(cliente);
+
+        }
+        //Funcion para listar los juegos
+    listarJuegos() {
 
         //Testing
         /*var oTabla = document.createElement("TABLE");
