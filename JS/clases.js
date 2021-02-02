@@ -208,7 +208,17 @@ class Tienda {
         //Función para añadir nuevos clientes
     registrarCliente(cliente) {
 
-            this.clientes.push(cliente);
+            let oClienteExistente = null;
+
+            oClienteExistente = _buscarCliente(cliente.sEmail);
+
+            if(oClienteExistente == null){
+                this.clientes.push(cliente);
+                return true;
+            }else{
+                return false;
+            }
+           
 
         }
         //Funcion para listar los juegos

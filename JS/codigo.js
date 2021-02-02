@@ -108,7 +108,12 @@ function altaUsuario() {
 
     let usuario = new Cliente(iContadorCliente, sNombre, sApellidos, dFecha, sEmail);
 
-    tienda.registrarCliente(usuario);
+    if(tienda.registrarCliente(usuario)){
+        alert("Cliente dado de alta correctamente");
+        ocultarFormularios();
+    }else{
+        alert("Ya existe un cliente con ese correo");
+    }
 
     limpiarInputs(inputs);
 
@@ -135,3 +140,11 @@ function altaJuego() {
 }
 
 //-----------------------------FIN REGISTRAR USUARIOS Y JUEGOS (ADMINISTRACION)---------------------//
+
+//-----------------------------METODOS AUXILIARES---------------------------------------------------//
+function _buscarCliente(emailBuscado){
+    let oClienteExistente = null; 
+    oClienteExistente = tienda.clientes.find(oCliente => oCliente.sEmail == emailBuscado);
+
+    return oClienteExistente;
+}
