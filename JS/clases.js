@@ -50,6 +50,30 @@ class Juego {
     setPegi(pegi){
         this.pegi= pegi;
     }
+
+    toHTMLRow() {
+
+        let sCadena = "";
+        sCadena += "<tr>";
+        sCadena += "<td>";
+        sCadena += this.getId_juego();
+        sCadena += "</td>";
+        sCadena += "<td>";
+        sCadena += this.getTitulo();
+        sCadena += "</td>";
+        sCadena += "<td>";
+        sCadena += this.getGenero();
+        sCadena += "</td>";
+        sCadena += "<td>";
+        sCadena += this.getPrecioo();
+        sCadena += "</td>";
+        sCadena += "<td>";
+        sCadena += this.getAño_lanzamiento();
+        sCadena += "</td>";
+        sCadena += "</tr>";
+        return sCadena;
+
+    }
 }
 
 class Cliente {
