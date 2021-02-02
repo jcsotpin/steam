@@ -18,4 +18,3 @@ function mostrarAltaSubcripcion() {
     formAltaSubcripcion.style.display = "block";
 }
 
-
