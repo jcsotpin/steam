@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Ejercicio de clase 3 - Bloque 2</title>
+
+    <!-- Bootstrap 
+    <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
+    
+  </head>
+  <body>
+    
+    <div id="menu" class="container-fluid bg-info">
+      <div class="imagen"><img src=""></div>
+      <br>
+      <br>
+    <!--Bloque Menú de opciones-->
+    <div class="menu row justify-content-around">
+      <div class="col-12">  
+        <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="mostrarAltaSubcripcion();">Alta Subcripción</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="ocultarFormularios();">Ocultar Formulario</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Opción 3</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Opción 4</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+    <!--Fin Bloque Menú de Opciones-->
+    
+    <!--Bloque de Formularios-->
+  <div class="container-fluid">
+    <div class="cuerpo">
+  
+  <!--Formulario de Alta de Persona-->    
+  <form class="form-horizontal" name="formAltaSubcripcion" id="formularios">
+    <fieldset>
+      <legend>Alta Subcriptor</legend>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="txtNIF">Introduzca su NIF: </label>
+        <div class="col-md-4">
+          <input id="txtNIF" name="txtNIF" type="text" placeholder="" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="txtNombre">Introduzca su nombre: </label>
+        <div class="col-md-4">
+          <input id="txtNombre" name="txtNombre" type="text" placeholder="" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="txtApellidos">Introduzca sus apellidos: </label>
+        <div class="col-md-4">
+          <input id="txtApellidos" name="txtApellidos" type="text" placeholder="" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="txtDireccion">Introduzca su dirección: </label>
+        <div class="col-md-4">
+          <input id="txtDireccion" name="txtDireccion" type="text" placeholder="" class="form-control input-md">
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="btnAceptarAltaPersona"></label>
+        <div class="col-md-4">
+          <input type="button" id="" name="" class="btn btn-info"
+            value="Aceptar" />
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+<!--Fin Formulario de Alta Persona-->
+
+<!--Bloque de Listados-->
+        <h3 id="titulo"></h3>
+        <div class="col-md-4" id="areaListado"></div>
+      </div>
+  </div>
+<!--Fin de Bloque de Listados-->
+
+<!--Fin Bloque de Formularios-->
+
+
+
+
+
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>    
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="codigo.js"></script>
+
+   
+
+  </body>
+</html>
