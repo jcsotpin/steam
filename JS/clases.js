@@ -193,3 +193,32 @@ Subscripcion.prototype.toHTMLRow = function(){
 
     return sFila;  
 }
+//Clase Tienda
+class Tienda{
+    constructor(){
+        this.juegos = [];
+        this.clientes = [];
+    }
+    //Función para añadir juegos
+    registrarJuego(){
+
+    }
+    //Función para añadir nuevos clientes
+    registrarCliente(){
+
+    }
+    //Funcion para listar los juegos
+    listarJuegos(){
+
+        //Testing
+        /*var oTabla = document.createElement("TABLE");
+        var oCaption = oTabla.createCaption();
+        oCaption.textContent="";
+
+        var oTHead = oTabla.createTHead();
+        var oFila = oTHead.insertRow(-1);
+        var oCelda = oFila.insertCell(-1);
+        oCelda.textContent="";*/
+
+    }
+}
