@@ -1,3 +1,46 @@
+//Clase Tienda
+class Tienda {
+    constructor() {
+        this.juegos = [];
+        this.clientes = [];
+    }
+        //Función para añadir juegos
+    registrarJuego(juego) {
+    
+        this.juegos.push(juego);
+    
+    }
+    //Función para añadir nuevos clientes
+    registrarCliente(cliente) {
+    
+        let oClienteExistente = null;
+    
+        oClienteExistente = _buscarCliente(cliente.sEmail);
+    
+        if(oClienteExistente == null){
+            this.clientes.push(cliente);
+            return true;
+        }else{
+            return false;
+        }
+               
+    
+    }
+    //Funcion para listar los juegos
+    listarJuegos() {
+    
+    //Testing
+    /*var oTabla = document.createElement("TABLE");
+    var oCaption = oTabla.createCaption();
+    oCaption.textContent="";
+    
+    var oTHead = oTabla.createTHead();
+    var oFila = oTHead.insertRow(-1);
+    var oCelda = oFila.insertCell(-1);
+    oCelda.textContent="";*/
+    
+    }
+}
 class Juego {
     constructor(id_juego, titulo, genero, año_lanzamiento, precio, pegi) {
 
@@ -8,7 +51,6 @@ class Juego {
         this.precio = precio;
         this.pegi = pegi;
     }
-
 
     //Id Juego
     getId_juego() {
@@ -193,46 +235,3 @@ Subscripcion.prototype.toHTMLRow = function() {
 
         return sFila;
     }
-    //Clase Tienda
-class Tienda {
-    constructor() {
-            this.juegos = [];
-            this.clientes = [];
-        }
-        //Función para añadir juegos
-    registrarJuego(juego) {
-
-            this.juegos.push(juego);
-
-        }
-        //Función para añadir nuevos clientes
-    registrarCliente(cliente) {
-
-            let oClienteExistente = null;
-
-            oClienteExistente = _buscarCliente(cliente.sEmail);
-
-            if(oClienteExistente == null){
-                this.clientes.push(cliente);
-                return true;
-            }else{
-                return false;
-            }
-           
-
-        }
-        //Funcion para listar los juegos
-    listarJuegos() {
-
-        //Testing
-        /*var oTabla = document.createElement("TABLE");
-        var oCaption = oTabla.createCaption();
-        oCaption.textContent="";
-
-        var oTHead = oTabla.createTHead();
-        var oFila = oTHead.insertRow(-1);
-        var oCelda = oFila.insertCell(-1);
-        oCelda.textContent="";*/
-
-    }
-}

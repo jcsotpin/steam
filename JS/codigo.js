@@ -29,6 +29,7 @@ ocultarFormularios();
 //Mostrar los formularios
 
 function muestraInicio() {
+    
     ocultarFormularios();
 }
 
@@ -148,3 +149,34 @@ function _buscarCliente(emailBuscado){
 
     return oClienteExistente;
 }
+//------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
+
+//------------------------------AÑADIDO DE DATOS CON XML----------------------------------------------//
+
+function loadXMLDoc(filename){
+    if(window.XMLHttpRequest){
+        xhttp = new XMLHttpRequest();
+    }else{
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.open("GET", filename, false);
+    xhttp.send();
+
+    return xhttp.responseXML;
+}
+function añadeDatos(){
+
+    var oXML = loadXMLDoc("steam.xml");
+    var oJuegos = oXML.querySelectorAll("juego");
+    var oClientes = oXML.querySelectorAll("cliente");
+    var oCompras = oXML.querySelectorAll("compra");
+    var oSubscripciones = oXML.querySelectorAll("subscripcion");
+
+    //Introduzco los juegos
+    for(i=0; i<oJuegos.length; i++){
+
+        console.log(oJuegos);
+    }
+}
+
+//------------------------------FIN AÑADIDO DE DATOS CON XML----------------------------------------------//
