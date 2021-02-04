@@ -1,6 +1,52 @@
 
+
 class Juego{ 
     constructor(id_juego, titulo, genero, año_lanzamiento, precio, pegi){
+
+//Clase Tienda
+class Tienda {
+    constructor() {
+        this.juegos = [];
+        this.clientes = [];
+    }
+        //Función para añadir juegos
+    registrarJuego(juego) {
+    
+        this.juegos.push(juego);
+    
+    }
+    //Función para añadir nuevos clientes
+    registrarCliente(cliente) {
+    
+        let oClienteExistente = null;
+    
+        oClienteExistente = _buscarCliente(cliente.sEmail);
+    
+        if(oClienteExistente == null){
+            this.clientes.push(cliente);
+            return true;
+        }else{
+            return false;
+        }
+    
+    }
+    //Funcion para listar los juegos
+    listarJuegos() {
+    
+    //Testing
+    /*var oTabla = document.createElement("TABLE");
+    var oCaption = oTabla.createCaption();
+    oCaption.textContent="";
+    
+    var oTHead = oTabla.createTHead();
+    var oFila = oTHead.insertRow(-1);
+    var oCelda = oFila.insertCell(-1);
+    oCelda.textContent="";*/
+    
+    }
+}
+class Juego {
+    constructor(id_juego, titulo, genero, año_lanzamiento, precio, pegi) { 
 
         this.id_juego = id_juego;
         this.titulo = titulo;
@@ -9,48 +55,55 @@ class Juego{
         this.precio = precio;
         this.pegi = pegi;
     }
+
     //Id Juego
     getId_juego() {
         return this.id_juego;
     }
-    setId_juego(id_juego){
-        this.id_juego= id_juego;
-    }
-    //Titulo
+    setId_juego(id_juego) {
+            this.id_juego = id_juego;
+        }
+        //Titulo
     getTitulo() {
         return this.titulo;
     }
-    setTitulo(titulo){
-        this.titulo= titulo;
-    }
-    //Genero
+    setTitulo(titulo) {
+            this.titulo = titulo;
+        }
+        //Genero
     getGenero() {
         return this.id_juego;
     }
-    setGenero(genero){
-        this.genero= genero;
-    }
-    //Año lanzamiento
+    setGenero(genero) {
+            this.genero = genero;
+        }
+        //Año lanzamiento
     getAño_lanzamiento() {
         return this.año_lanzamiento;
     }
-    setAño_lanzamiento(genero){
-        this.año_lanzamiento= año_lanzamiento;
-    }
-    //Precio
+    setAño_lanzamiento(genero) {
+            this.año_lanzamiento = año_lanzamiento;
+        }
+        //Precio
     getPrecioo() {
         return this.precio;
     }
+
     setPrecio(precio){
         this.precio= precio;
     }
 
+
+    setPrecio(precio) {
+            this.precio = precio;
+        }
+
         //Pegi
-        getPegi() {
+    getPegi() {
         return this.pegi;
     }
-    setPegi(pegi){
-        this.pegi= pegi;
+    setPegi(pegi) {
+        this.pegi = pegi;
     }
 
     toHTMLRow() {
@@ -76,7 +129,10 @@ class Juego{
         return sCadena;
 
     }
+
 }
+
+
 
 class Cliente {
     constructor(iID, sNombre, sApellidos, dFecha, sEmail) {
@@ -146,3 +202,52 @@ class Cliente {
 
 }
 
+
+class Compra {
+
+    constructor(sIdCompra, sIdCliente, sIdJuego, dFecha, dCosteCompra) {
+
+        this.idCompra = sIdCompra;
+        this.idCliente = sIdCliente;
+        this.idJuego = sIdJuego;
+        this.fecha = dFecha;
+        this.costeCompra = dCosteCompra;
+
+
+    }
+
+}
+Compra.prototype.toHTMLRow = function() {
+    let sFila = "<tr>";
+    sFila += "<td>" + this.idCompra + "</td>";
+    sFila += "<td>" + this.idCliente + "</td>";
+    sFila += "<td>" + this.idJuego + "</td>";
+    sFila += "<td>" + this.fecha + "</td>";
+    sFila += "<td>" + this.costeCompra + "</td>";
+
+    return sFila;
+}
+
+class Subscripcion {
+
+    constructor(sIdSubscripcion, dFechaExp, dPrecio) {
+
+        this.idSubscripcion = sIdSubscripcion;
+        this.fechaExp = dFechaExp;
+        this.precio = dPrecio;
+    }
+}
+
+Subscripcion.prototype.toHTMLRow = function() {
+
+        let sFila = "<tr>";
+        sFila += "<td>" + this.idSubscripcion + "</td>";
+        sFila += "<td>" + this.fechaExp + "</td>";
+        sFila += "<td>" + this.precio + "</td>";
+
+
+        return sFila;
+    }
+    
+}
+}
