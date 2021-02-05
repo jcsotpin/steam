@@ -1,52 +1,59 @@
-
-
-class Juego{ 
-    constructor(id_juego, titulo, genero, año_lanzamiento, precio, pegi){
-
 //Clase Tienda
 class Tienda {
     constructor() {
-        this.juegos = [];
-        this.clientes = [];
-    }
+            this.juegos = [];
+            this.clientes = [];
+            this.suscriptores = [];
+        }
         //Función para añadir juegos
     registrarJuego(juego) {
-    
-        this.juegos.push(juego);
-    
-    }
-    //Función para añadir nuevos clientes
-    registrarCliente(cliente) {
-    
-        let oClienteExistente = null;
-    
-        oClienteExistente = _buscarCliente(cliente.sEmail);
-    
-        if(oClienteExistente == null){
-            this.clientes.push(cliente);
-            return true;
-        }else{
-            return false;
+
+            let oJuegoExistente = null;
+
+            oJuegoExistente = _buscaJuego(juego.titulo, juego.año_lanzamiento);
+
+            if (oJuegoExistente == null) {
+                this.juegos.push(juego);
+                return true;
+            } else {
+                return false;
+            }
+
+
+
         }
-    
-    }
-    //Funcion para listar los juegos
+        //Función para añadir nuevos clientes
+    registrarCliente(cliente) {
+
+            let oClienteExistente = null;
+
+            oClienteExistente = _buscarCliente(cliente.sEmail);
+
+            if (oClienteExistente == null) {
+                this.clientes.push(cliente);
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+        //Funcion para listar los juegos
     listarJuegos() {
+
+        //Testing
+        /*var oTabla = document.createElement("TABLE");
+        var oCaption = oTabla.createCaption();
+        oCaption.textContent="";
     
-    //Testing
-    /*var oTabla = document.createElement("TABLE");
-    var oCaption = oTabla.createCaption();
-    oCaption.textContent="";
-    
-    var oTHead = oTabla.createTHead();
-    var oFila = oTHead.insertRow(-1);
-    var oCelda = oFila.insertCell(-1);
-    oCelda.textContent="";*/
-    
+        var oTHead = oTabla.createTHead();
+        var oFila = oTHead.insertRow(-1);
+        var oCelda = oFila.insertCell(-1);
+        oCelda.textContent="";*/
+
     }
 }
 class Juego {
-    constructor(id_juego, titulo, genero, año_lanzamiento, precio, pegi) { 
+    constructor(id_juego, titulo, genero, año_lanzamiento, precio, pegi) {
 
         this.id_juego = id_juego;
         this.titulo = titulo;
@@ -89,16 +96,16 @@ class Juego {
         return this.precio;
     }
 
-    setPrecio(precio){
-        this.precio= precio;
+    setPrecio(precio) {
+        this.precio = precio;
     }
 
 
     setPrecio(precio) {
-            this.precio = precio;
-        }
+        this.precio = precio;
+    }
 
-        //Pegi
+    //Pegi
     getPegi() {
         return this.pegi;
     }
@@ -240,14 +247,11 @@ class Subscripcion {
 
 Subscripcion.prototype.toHTMLRow = function() {
 
-        let sFila = "<tr>";
-        sFila += "<td>" + this.idSubscripcion + "</td>";
-        sFila += "<td>" + this.fechaExp + "</td>";
-        sFila += "<td>" + this.precio + "</td>";
+    let sFila = "<tr>";
+    sFila += "<td>" + this.idSubscripcion + "</td>";
+    sFila += "<td>" + this.fechaExp + "</td>";
+    sFila += "<td>" + this.precio + "</td>";
 
 
-        return sFila;
-    }
-    
-}
+    return sFila;
 }

@@ -54,9 +54,9 @@
         <cliente>
             <id>5</id>
             <nombre>Rosa</nombre>
-            <apellidos>Melano</apellidos>
+            <apellidos>Gutierrez</apellidos>
             <fecha_nac>15/04/1998</fecha_nac>
-            <email>rosaMelano@correo.com</email>
+            <email>rosaGutierrez@correo.com</email>
         </cliente>
     </clientes>
     <compras>

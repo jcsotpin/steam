@@ -55,7 +55,7 @@
         <div class="cuerpo">
 
             <!--Formulario de Alta de Persona-->
-            <form class="form-horizontal" name="formAltaSubcripcion" id="formAltaSubcripcion">
+            <form class="form-horizontal" name="formAdministracion" id="formAdministracionSuscriptor">
                 <fieldset>
                     <legend>Alta Subscriptor</legend>
 
@@ -63,37 +63,16 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="txtNIF">Introduzca su NIF: </label>
                         <div class="col-md-4">
-                            <input id="txtNIF" name="txtNIF" type="text" placeholder="" class="form-control input-md" pattern="\d\d\d\d\d\d\d\d[A-Z]" required required minlength="9" maxlength="9">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtNombre">Introduzca su nombre: </label>
-                        <div class="col-md-4">
-                            <input id="txtNombre" name="txtNombre" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required maxlength="48">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtApellidos">Introduzca sus apellidos: </label>
-                        <div class="col-md-4">
-                            <input id="txtApellidos" name="txtApellidos" type="text" placeholder="" class="form-control input-md" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required maxlength="48">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtDireccion">Introduzca su Corre: </label>
-                        <div class="col-md-4">
-                            <input id="txtDireccion" name="txtDireccion" type="text" placeholder="" class="form-control input-md" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+                            <input id="txtNIF" name="txtNIF" type="text" placeholder="" class="form-control input-md" maxlength="9">
                         </div>
                     </div>
 
                     <br>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="btnAceptarAltaPersona"></label>
+                        <label class="col-md-4 control-label" for="btnDarAltaSuscriptor"></label>
                         <div class="col-md-4">
-                            <input type="button" id="" name="" class="btn btn-info" onclick="valida_envia()" value="Aceptar" />
+                            <input type="button" id="btnDarAltaSuscriptor" name="btnDarAltaSuscriptor" class="btn btn-info" value="Aceptar" />
                         </div>
                     </div>
 
@@ -106,30 +85,30 @@
                 <fieldset>
                     <legend>Alta Cliente</legend>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtNombre">Introduzca su nombre: </label>
+                        <label class="col-md-4 control-label" for="txtNombreCliente">Introduzca su nombre: </label>
                         <div class="col-md-4">
-                            <input id="txtNombre" name="txtNombre" type="text" placeholder="NOMBRE" class="form-control input-md" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required maxlength="48">
-                        </div> 
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtApellidos">Introduzca sus apellidos: </label>
-                        <div class="col-md-4">
-                            <input id="txtApellidos" name="txtApellidos" type="text" placeholder="APELLIDOS" class="form-control input-md" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required maxlength="48">
+                            <input id="txtNombreCliente" name="txtNombre" type="text" placeholder="NOMBRE" class="form-control input-md" maxlength="48">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtFecha">Introduzca su fecha de nacimiento:</label>
+                        <label class="col-md-4 control-label" for="txtApellidosCliente">Introduzca sus apellidos: </label>
                         <div class="col-md-4">
-                            <input id="txtFecha" name="txtFecha" type="date" placeholder="FECHA DE NACIMIENTO" class="form-control input-md" required>
+                            <input id="txtApellidosCliente" name="txtApellidos" type="text" placeholder="APELLIDOS" class="form-control input-md" maxlength="48">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtDireccion">Introduzca su email:</label>
+                        <label class="col-md-4 control-label" for="txtFechaCliente">Introduzca su fecha de nacimiento:</label>
                         <div class="col-md-4">
-                            <input id="txtDireccion" name="txtDireccion" type="text" placeholder="EMAIL" class="form-control input-md" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+                            <input id="txtFechaCliente" name="txtFecha" type="text" placeholder="00/00/0000" class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="txtDireccionCliente">Introduzca su email:</label>
+                        <div class="col-md-4">
+                            <input id="txtDireccionCliente" name="txtDireccion" type="text" placeholder="EMAIL" class="form-control input-md">
                         </div>
                     </div>
 
@@ -154,34 +133,34 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="txtTitulo">Introduzca su titulo: </label>
                         <div class="col-md-4">
-                            <input id="txtTitulo" name="txtTitulo" type="text" placeholder="TITULO" class="form-control input-md" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required maxlength="48">
+                            <input id="txtTitulo" name="txtTitulo" type="text" placeholder="TITULO" class="form-control input-md" maxlength="48">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtApellidos">Introduzca sus genero: </label>
+                        <label class="col-md-4 control-label" for="txtGenero">Introduzca sus genero: </label>
                         <div class="col-md-4">
-                            <input id="txtGenero" name="txtGenero" type="text" placeholder="GENERO" class="form-control input-md" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required maxlength="48">
+                            <input id="txtGenero" name="txtGenero" type="text" placeholder="GENERO" class="form-control input-md" maxlength="48">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtDireccion">Introduzca su año de lanzamiento:</label>
+                        <label class="col-md-4 control-label" for="txtFechaJuego">Introduzca su año de lanzamiento:</label>
                         <div class="col-md-4">
-                            <input id="txtFecha" name="txtFecha" type="date" placeholder="FECHA" class="form-control input-md" required>
+                            <input id="txtFechaJuego" name="txtFecha" type="text" placeholder="00/00/0000" class="form-control input-md">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtDireccion">Introduzca su precio:</label>
+                        <label class="col-md-4 control-label" for="txtPrecio">Introduzca su precio:</label>
                         <div class="col-md-4">
-                            <input id="txtPrecio" name="txtPrecio" type="number" placeholder="PRECIO" class="form-control input-md" required>
+                            <input id="txtPrecio" name="txtPrecio" type="text" placeholder="00,00" class="form-control input-md">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="txtDireccion">Introduzca pegi:</label>
+                        <label class="col-md-4 control-label" for="txtPegi">Introduzca pegi:</label>
                         <div class="col-md-4">
-                            <input id="txtPegi" name="txtPegi" type="text" placeholder="1+" class="form-control input-md" pattern="{1,18}" required>
+                            <input id="txtPegi" name="txtPegi" type="text" placeholder="PEGI" class="form-control input-md">
                         </div>
                     </div>
 
@@ -192,7 +171,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="btnAceptarAltaJuego"></label>
                         <div class="col-md-4">
-                            <input type="button" id="btnAceptarAltaJuego" name="btnAceptarAltaJuego" onclick= "valida_envia()"class="btn btn-info" value="Registrar Juego " />
+                            <input type="button" id="btnAceptarAltaJuego" name="btnAceptarAltaJuego" class="btn btn-info" value="Registrar Juego " />
                         </div>
                     </div>
 
@@ -219,18 +198,7 @@
     <script type="text/javascript" src="./JS/clases.js"></script>
     <script type="text/javascript" src="./JS/codigo.js"></script>
     <script type="text/javascript" src="./JS/ValidacionForm.js"></script>
-    <script>
-        const email = document.getElementById("txtDireccion");
-  
-        email.addEventListener("input", function (event) {
-          if (email.validity.typeMismatch) {
-            email.setCustomValidity("¡Se esperaba una dirección de correo electrónico!");
-            } 
-            else {
-            email.setCustomValidity("");
-            }
-            });
-    </script>
+
 
 
 

@@ -12,12 +12,10 @@ document.getElementById("btnAdministrar").addEventListener("click", muestraAdmin
 //-----Fin botones de navegacion superior-------------------
 document.getElementById("btnAceptarAltaPersona").addEventListener("click", altaUsuario);
 document.getElementById("btnAceptarAltaJuego").addEventListener("click", altaJuego);
+document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSuscriptor);
 
 //--------------------------------------------------------------------------------------//
 
-//Contadores provisionales id cliente y id juego
-let iContadorCliente = 0;
-let iContadorJuego = 0;
 
 //Llamada a la Función de Ocultar Formularios para que comiencen ocultos
 ocultarFormularios();
@@ -29,7 +27,7 @@ ocultarFormularios();
 //Mostrar los formularios
 
 function muestraInicio() {
-    
+
     ocultarFormularios();
 }
 
@@ -98,25 +96,40 @@ function limpiarInputs(inputs) {
 
 function altaUsuario() {
 
+
+
     let form = document.getElementById("formAdministracionUsuario");
     let inputs = form.getElementsByTagName("input");
+
 
     let sNombre = inputs[0].value;
     let sApellidos = inputs[1].value;
     let dFecha = inputs[2].value;
     let sEmail = inputs[3].value;
-    iContadorCliente++;
 
-    let usuario = new Cliente(iContadorCliente, sNombre, sApellidos, dFecha, sEmail);
+    let res = validaExpRegUsuario();
 
-    if(tienda.registrarCliente(usuario)){
-        alert("Cliente dado de alta correctamente");
-        ocultarFormularios();
-    }else{
-        alert("Ya existe un cliente con ese correo");
+    if (res == true) {
+        alert("noooo");
+
+    } else {
+        let iPosicion = tienda.clientes.length;
+
+        let oUsuario = new Cliente(iPosicion + 1, sNombre, sApellidos, dFecha, sEmail);
+
+        if (tienda.registrarCliente(oUsuario)) {
+            alert("Cliente dado de alta correctamente");
+            limpiarInputs(inputs);
+            ocultarFormularios();
+        } else {
+            alert("Ya existe un cliente con ese correo");
+        }
+
+
+
     }
 
-    limpiarInputs(inputs);
+
 
 
 }
@@ -131,33 +144,74 @@ function altaJuego() {
     let dFechaLanzamiento = inputs[2].value;
     let iPrecio = inputs[3].value;
     let iPegi = inputs[4].value;
-    iContadorJuego++;
 
-    let juego = new Juego(iContadorJuego, sTitulo, sGenero, dFechaLanzamiento, iPrecio, iPegi);
+    let res = validaExpRegJuego();
 
-    tienda.registrarJuego(juego);
+    if (res == true) {
+        alert("nooJuegoNooo");
+    } else {
+        let iPosicion = tienda.juegos.length;
 
-    limpiarInputs(inputs);
+        let oJuego = new Juego(iPosicion + 1, sTitulo, sGenero, dFechaLanzamiento, iPrecio, iPegi);
+
+        if (tienda.registrarJuego(oJuego)) {
+            alert("Juego dado de alta correctamente");
+            limpiarInputs(inputs);
+            ocultarFormularios();
+        } else {
+            alert("Ya existe ese juego");
+        }
+
+
+    }
+
+
 
 }
+
+function altaSuscriptor() {
+    let form = document.getElementById("formAdministracionSuscriptor");
+    let inputs = form.getElementsByTagName("input");
+
+    let sNIF = inputs[0];
+    let iPosicion = tienda.suscriptores.length;
+
+    //TO DO devuelve el id del tio que existe usando el nif para la busqueda
+    let iID = buscaNIF(sNIF);
+
+    if (iID != 0) {
+        let oSuscriptor = new Subscripcion(iPosicion + 1, iID);
+    }
+
+}
+
 
 //-----------------------------FIN REGISTRAR USUARIOS Y JUEGOS (ADMINISTRACION)---------------------//
 
 //-----------------------------METODOS AUXILIARES---------------------------------------------------//
-function _buscarCliente(emailBuscado){
-    let oClienteExistente = null; 
+function _buscarCliente(emailBuscado) {
+    let oClienteExistente = null;
     oClienteExistente = tienda.clientes.find(oCliente => oCliente.sEmail == emailBuscado);
 
     return oClienteExistente;
+}
+
+function _buscaJuego(titulo, añoLanzamiento) {
+
+    let oJuegoExistente = null;
+    oJuegoExistente = tienda.juegos.find(oJuego => oJuego.titulo == titulo && oJuego.año_lanzamiento == añoLanzamiento);
+
+    return oJuegoExistente;
+
 }
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
 //------------------------------AÑADIDO DE DATOS CON XML----------------------------------------------//
 
-function loadXMLDoc(filename){
-    if(window.XMLHttpRequest){
+function loadXMLDoc(filename) {
+    if (window.XMLHttpRequest) {
         xhttp = new XMLHttpRequest();
-    }else{
+    } else {
         xhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xhttp.open("GET", filename, false);
@@ -165,7 +219,8 @@ function loadXMLDoc(filename){
 
     return xhttp.responseXML;
 }
-function añadeDatos(){
+
+function añadeDatos() {
 
     var oXML = loadXMLDoc("steam.xml");
     var oJuegos = oXML.querySelectorAll("juego");
@@ -174,11 +229,10 @@ function añadeDatos(){
     var oSubscripciones = oXML.querySelectorAll("subscripcion");
 
     //Introduzco los juegos
-    for(i=0; i<oJuegos.length; i++){
+    for (i = 0; i < oJuegos.length; i++) {
 
         console.log(oJuegos);
     }
 }
 
 //------------------------------FIN AÑADIDO DE DATOS CON XML----------------------------------------------//
-
