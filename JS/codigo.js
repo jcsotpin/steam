@@ -1,6 +1,6 @@
 "use strict";
 //Creamos el objeto tienda para añadirle datos posteriormente
-let tienda = new Tienda();
+var tienda = new Tienda();
 
 //-------------------------EVENTSLISTENERS----------------------------------------------//
 //-----Botonones de navegacion superior-------------------
@@ -13,7 +13,7 @@ document.getElementById("btnAdministrar").addEventListener("click", muestraAdmin
 document.getElementById("btnAceptarAltaPersona").addEventListener("click", altaUsuario);
 document.getElementById("btnAceptarAltaJuego").addEventListener("click", altaJuego);
 document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSuscriptor);
-
+document.getElementById("btnCargarDatos").addEventListener("click", cargarDatos);
 //--------------------------------------------------------------------------------------//
 
 
@@ -208,31 +208,86 @@ function _buscaJuego(titulo, añoLanzamiento) {
 
 //------------------------------AÑADIDO DE DATOS CON XML----------------------------------------------//
 
-function loadXMLDoc(filename) {
-    if (window.XMLHttpRequest) {
-        xhttp = new XMLHttpRequest();
-    } else {
-        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xhttp.open("GET", filename, false);
-    xhttp.send();
+function loadXMLDoc(filename)
+{
+	if (window.XMLHttpRequest)
+	  {
+	  var xhttp=new XMLHttpRequest();
+	  }
+	else // code for IE5 and IE6
+	  {
+	  var xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	xhttp.open("GET",filename,false);
+	
+	xhttp.send();
+	
+	return xhttp.responseXML;
+} 
+function cargarDatos(){
 
-    return xhttp.responseXML;
-}
-
-function añadeDatos() {
-
-    var oXML = loadXMLDoc("steam.xml");
-    var oJuegos = oXML.querySelectorAll("juego");
-    var oClientes = oXML.querySelectorAll("cliente");
-    var oCompras = oXML.querySelectorAll("compra");
-    var oSubscripciones = oXML.querySelectorAll("subscripcion");
+    
+    var oXML = loadXMLDoc("../steam.xml");
+    var oJuegos = oXML.getElementsByTagName("juego");
+    var oClientes = oXML.getElementsByTagName("cliente");
+    var oCompras = oXML.getElementsByTagName("compra");
+    var oSubscripciones = oXML.getElementsByTagName("subscripcion");
+   
+    
 
     //Introduzco los juegos
-    for (i = 0; i < oJuegos.length; i++) {
+    for(var i=0; i<oJuegos.length; i++){
 
-        console.log(oJuegos);
+        // console.log(oJuegos[i]);
+        var titulo = oJuegos[i].getElementsByTagName("titulo")[0].textContent;
+        var genero = oJuegos[i].getElementsByTagName("genero")[0].textContent;
+        var anyo = oJuegos[i].getElementsByTagName("anyo_lanzamiento")[0].textContent;
+        var precio = oJuegos[i].getElementsByTagName("precio")[0].textContent;
+        var pegi = oJuegos[i].getElementsByTagName("pegi")[0].textContent;
+
+        var juego = new Juego(i, titulo, genero, anyo, precio, pegi);
+
+        tienda.registrarJuego(juego);
+
     }
+    //Introduzco los usuarios
+
+    for(var i=0; i<oClientes.length;i++){
+
+        var nombre = oClientes[i].getElementsByTagName("nombre")[0].textContent;
+        var apellidos = oClientes[i].getElementsByTagName("apellidos")[0].textContent;
+        var fecha_nac = oClientes[i].getElementsByTagName("fecha_nac")[0].textContent;
+        var correo = oClientes[i].getElementsByTagName("email")[0].textContent;
+
+        var usuario = new Cliente(i, nombre, apellidos, fecha_nac, correo);
+
+        tienda.registrarCliente(usuario);
+    }
+
+    //Introduzco las compras
+
+    for(var i=0; i<oCompras.length;i++){
+
+        var id_cliente = oCompras[i].getElementsByTagName("id_cliente")[0].textContent;
+        var id_juego = oCompras[i].getElementsByTagName("id_juego")[0].textContent;
+        var fecha = oCompras[i].getElementsByTagName("fecha")[0].textContent;
+        var coste = oCompras[i].getElementsByTagName("coste_compra")[0].textContent;
+
+        var compra =  new Compra (i, id_cliente, id_juego, fecha, coste);
+
+        tienda.registrarCompra(compra);
+    }
+
+    for(var i=0; i<oSubscripciones.length; i++){
+        var fechaExp = oSubscripciones[i].getElementsByTagName("id")[0].textContent;
+        var precioSub = oSubscripciones[i].getElementsByTagName("precio")[0].textContent;
+
+        var subscripcion =  new Subscripcion (i, fechaExp, precioSub);
+
+        tienda.registrarSubscripcion(subscripcion);
+    }
+
+    alert("Se han cargado los datos correctamente.");
 }
 
 //------------------------------FIN AÑADIDO DE DATOS CON XML----------------------------------------------//

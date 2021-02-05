@@ -1,12 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <tienda>
     <juegos>
         <juego>
             <id>1</id>
             <titulo>The binding of Isaac</titulo>
-            <generos>
-                <genero>Indie</genero>
-                <genero>Roguelike</genero>
-            </generos>
+            <genero>Indie</genero>
             <anyo_lanzamiento>2011</anyo_lanzamiento>
             <precio>9.99</precio>
             <pegi>+16</pegi>
@@ -14,9 +12,7 @@
         <juego>
             <id>2</id>
             <titulo>Forza Horizon 4</titulo>
-            <generos>
-                <genero>Conduccion</genero>
-            </generos>
+            <genero>Conduccion</genero>
             <anyo_lanzamiento>2018</anyo_lanzamiento>
             <precio>27.99</precio>
             <pegi>+3</pegi>
@@ -61,9 +57,9 @@
     </clientes>
     <compras>
         <compra>
+            <id_compra>1</id_compra>
             <id_cliente>1</id_cliente>
             <id_juego>1</id_juego>
-            <id_compra>1</id_compra>
             <fecha>05/01/2021</fecha>
             <coste_compra>9.99</coste_compra>
         </compra>

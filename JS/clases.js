@@ -252,6 +252,6 @@ Subscripcion.prototype.toHTMLRow = function() {
     sFila += "<td>" + this.fechaExp + "</td>";
     sFila += "<td>" + this.precio + "</td>";
 
-
-    return sFila;
-}
+        return sFila;
+    }
+    
