@@ -1,8 +1,5 @@
 
 
-class Juego{ 
-    constructor(id_juego, titulo, genero, año_lanzamiento, precio, pegi){
-
 //Clase Tienda
 class Tienda {
     constructor() {
@@ -249,5 +246,3 @@ Subscripcion.prototype.toHTMLRow = function() {
         return sFila;
     }
     
-}
-}
