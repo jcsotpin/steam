@@ -68,36 +68,39 @@ class Tienda {
     listarJuegos() {
 
         ocultarFormularios();
-        
+
+
+
         var oTabla = document.createElement("table");
-        
+
         oTabla.setAttribute('border', '1');
         oTabla.id = "lista";
-       var header = oTabla.createTHead();
-       var row = header.insertRow(0);
-       var cell = row.insertCell(-1);
-       cell.textContent = "TITULO";
-       cell = row.insertCell(-1);
-       cell.textContent = "GENERO";
-       cell = row.insertCell(-1);
-       cell.textContent = "AÑO";
-       cell = row.insertCell(-1);
-       cell.textContent = "PRECIO";
-       cell = row.insertCell(-1);
-       cell.textContent = "PEGI";
-       cell = row.insertCell(-1);
-       cell.textContent = "Comprar ";
+        var header = oTabla.createTHead();
+        var row = header.insertRow(0);
+        var cell = row.insertCell(-1);
+        cell.textContent = "TITULO";
+        cell = row.insertCell(-1);
+        cell.textContent = "GENERO";
+        cell = row.insertCell(-1);
+        cell.textContent = "AÑO";
+        cell = row.insertCell(-1);
+        cell.textContent = "PRECIO";
+        cell = row.insertCell(-1);
+        cell.textContent = "PEGI";
+        cell = row.insertCell(-1);
+        cell.textContent = "Comprar ";
 
-       var tbody = document.createElement("TBODY");
-       oTabla.appendChild(tbody);
-       var btnCompra = document.createElement("button");
-        btnCompra.setAttribute('value','Comprar');
+        var tbody = document.createElement("TBODY");
+        oTabla.appendChild(tbody);
+        var btnCompra = document.createElement("button");
+        btnCompra.setAttribute('value', 'Comprar');
         btnCompra.textContent = "Comprar";
-       for(var i = 0; i<this.juegos.length; i++){
-           
-             row = tbody.insertRow(-1);
-             var btnCompra = document.createElement("button");
-             btnCompra.textContent = "Comprar";
+        btnCompra = document.addEventListener("click", this.mostrarFormCompra);
+        for (var i = 0; i < this.juegos.length; i++) {
+
+            row = tbody.insertRow(-1);
+            var btnCompra = document.createElement("button");
+            btnCompra.textContent = "Comprar";
             //let juegoIndividual = Object.values(this.juegos[i]);
 
             cell = row.insertCell(-1);
@@ -109,13 +112,55 @@ class Tienda {
             cell = row.insertCell(-1);
             cell.textContent = this.juegos[i]["precio"];
             cell = row.insertCell(-1);
-            cell.textContent = this.juegos[i]["pegi"];
+            cell.textContent = "+" + this.juegos[i]["pegi"];
             cell = row.insertCell(-1);
             cell.appendChild(btnCompra);
-           
-           
-       }
-       document.body.appendChild(oTabla);
+
+
+        }
+        document.body.appendChild(oTabla);
+
+    }
+
+    mostrarFormCompra(oEvento) {
+
+        //DEBE RECOGER EL EVENTO EN EL BOTON, ACTUALMENTE LO RECOGE DEL BODY
+        //AVERIGUAR COMO COGER LOS DATOS DEL JUEGO
+        //MIRAR CON ALVARO QUE EL BOTON SE DECLARA VARIAS VECES
+
+        let form = document.createElement("form");
+        let fieldset = document.createElement("fieldset");
+        let legend = document.createElement("legend");
+        let div = document.createElement("div");
+        let label = document.createElement("label");
+        let inputDatos = document.createElement("input");
+        let input = document.createElement("input");
+
+        form.id = "frmCompra";
+        form.name = "frmCompra";
+        form.classList.add("form-horizontal");
+
+
+        form.appendChild(fieldset);
+        fieldset.appendChild(legend);
+        // legend.textContent("Juego");
+        div = document.createElement("div");
+        div.classList.add("form-group");
+        fieldset.appendChild(div);
+        //label.classList.add("col-5-md-4 control-label");
+        div.appendChild(label);
+        label.for = "inputJuego";
+        label.textContent = "nombreJuego";
+        let divo = document.createElement("div");
+        div.appendChild(divo);
+        divo.classList.add("col-md-4");
+        divo.appendChild(inputDatos);
+        inputDatos.id = "txtDatos";
+        inputDatos.value = "NOmbreJUEGOSO";
+
+        document.body.appendChild(form);
+
+
 
     }
 }
