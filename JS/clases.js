@@ -67,7 +67,8 @@ class Tienda {
         //Funcion para listar los juegos
     listarJuegos() {
 
-        //Testing
+        ocultarFormularios();
+        
         var oTabla = document.createElement("table");
         oTabla.setAttribute('border', '1');
         oTabla.id = "lista";
