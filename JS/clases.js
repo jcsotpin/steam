@@ -70,6 +70,7 @@ class Tienda {
         //Testing
         var oTabla = document.createElement("table");
         oTabla.setAttribute('border', '1');
+        oTabla.id = "lista";
        var header = oTabla.createTHead();
        var row = header.insertRow(0);
        var cell = row.insertCell(-1);
