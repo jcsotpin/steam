@@ -27,5 +27,30 @@ input:invalid{
   }
 
   .error.active {
-    padding: 0.3em;
+  padding: 0.3em;
   }
+
+
+  table {
+    font-size: 13px;
+    font-weight:bold;
+   
+    background-repeat: repeat-x;
+    color: #c7d5e0;
+    font-family: “Trebuchet MS”, Arial;
+    text-align:left;
+    }
+    table td {
+    padding: 5px;
+    background-color: #2a475e;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    }
+   
+    tr:hover td { background: #66c0f4; color: #339; }
+
+
