@@ -192,8 +192,6 @@ function altaSuscriptor() {
 
     let iPosicion = tienda.subscripciones.length;
 
-        let iPosicion = tienda.suscriptores.length;
-
         //TO DO devuelve el id del tio que existe usando el nif para la busqueda
         let iID = buscaNIF(sNIF);
 

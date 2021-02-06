@@ -186,4 +186,5 @@ function validarNIF(){
     else{
         document.getElementById("txtNIF").classList.remove("error");
     }
+    return sErrores
 }
