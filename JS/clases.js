@@ -68,14 +68,39 @@ class Tienda {
     listarJuegos() {
 
         //Testing
-        /*var oTabla = document.createElement("TABLE");
-        var oCaption = oTabla.createCaption();
-        oCaption.textContent="";
-    
-        var oTHead = oTabla.createTHead();
-        var oFila = oTHead.insertRow(-1);
-        var oCelda = oFila.insertCell(-1);
-        oCelda.textContent="";*/
+        var oTabla = document.createElement("table");
+        oTabla.setAttribute('border', '1');
+       var header = oTabla.createTHead();
+       var row = header.insertRow(0);
+       var cell = row.insertCell(-1);
+       cell.textContent = "TITULO";
+       cell = row.insertCell(-1);
+       cell.textContent = "GENERO";
+       cell = row.insertCell(-1);
+       cell.textContent = "AÑO";
+       cell = row.insertCell(-1);
+       cell.textContent = "PRECIO";
+       cell = row.insertCell(-1);
+       cell.textContent = "PEGI";
+
+       var tbody = document.createElement("TBODY");
+       oTabla.appendChild(tbody);
+
+       for(var i = 0; i<this.juegos.length; i++){
+           
+             row = tbody.insertRow(-1);
+            
+            let juegoIndividual = Object.values(this.juegos[i]);
+
+            for(var j=1; j<juegoIndividual.length; j++){
+
+                cell = row.insertCell(-1);
+                cell.textContent = juegoIndividual[j];
+             //   console.log(juegoIndividual[j]);
+            }
+           
+       }
+       document.body.appendChild(oTabla);
 
     }
 }

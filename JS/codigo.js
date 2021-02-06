@@ -37,10 +37,15 @@ function muestraInicio() {
 
 function muestraTienda() {
     ocultarFormularios();
+    
+    
+    tienda.listarJuegos();
 }
 
 function muestraBiblioteca() {
     ocultarFormularios();
+
+    
 }
 
 function muestraUsuario() {
