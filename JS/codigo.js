@@ -72,10 +72,10 @@ function muestraFormAltaJuego() {
 function ocultarFormularios() {
 
     let oTabla = document.getElementById("lista");
-    if(oTabla != null){
+    if (oTabla != null) {
         oTabla.remove();
     }
-    
+
     let arrayFormularios = document.getElementsByTagName("form");
 
     //Oculta los formularios
@@ -184,6 +184,8 @@ function altaJuego() {
         let arrayFecha = dFechaLanzamiento.split("/");
 
         let dFechaCambiada = new Date(arrayFecha[2], arrayFecha[1] - 1, arrayFecha[0]);
+
+        console.log(dFechaCambiada);
 
         let oJuego = new Juego(iPosicion + 1, sTitulo, sGenero, dFechaCambiada, iPrecio, iPegi);
 
