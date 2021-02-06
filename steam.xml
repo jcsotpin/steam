@@ -11,6 +11,14 @@
         </juego>
         <juego>
             <id>2</id>
+            <titulo>BioShock</titulo>
+            <genero>Shooter</genero>
+            <anyo_lanzamiento>2007/08/19</anyo_lanzamiento>
+            <precio>34,90</precio>
+            <pegi>+18</pegi>
+        </juego>
+        <juego>
+            <id>3</id>
             <titulo>Forza Horizon 4</titulo>
             <genero>Conduccion</genero>
             <anyo_lanzamiento>2018/09/28</anyo_lanzamiento>
@@ -18,11 +26,75 @@
             <pegi>+3</pegi>
         </juego>
          <juego>
-            <id>3</id>
+            <id>4</id>
             <titulo>Red Dead Redemption II</titulo>
             <genero>Sandbox</genero>
             <anyo_lanzamiento>2018/10/26</anyo_lanzamiento>
             <precio>59,99</precio>
+            <pegi>+18</pegi>
+        </juego>
+        <juego>
+            <id>5</id>
+            <titulo>Dead Space</titulo>
+            <genero>Superviviencia Horror</genero>
+            <anyo_lanzamiento>2008/10/14</anyo_lanzamiento>
+            <precio>12,99</precio>
+            <pegi>+18</pegi>
+        </juego>
+        <juego>
+            <id>6</id>
+            <titulo>Stardew Valley</titulo>
+            <genero>Indie</genero>
+            <anyo_lanzamiento>2016/02/26</anyo_lanzamiento>
+            <precio>20,45</precio>
+            <pegi>+12</pegi>
+        </juego>
+        <juego>
+            <id>7</id>
+            <titulo>BattleField V</titulo>
+            <genero>Shooter</genero>
+            <anyo_lanzamiento>2018/09/04</anyo_lanzamiento>
+            <precio>54,95</precio>
+            <pegi>+18</pegi>
+        </juego>
+        <juego>
+            <id>8</id>
+            <titulo>F1 2020</titulo>
+            <genero>Conduccion</genero>
+            <anyo_lanzamiento>2020/07/06</anyo_lanzamiento>
+            <precio>69,99</precio>
+            <pegi>+16</pegi>
+        </juego>
+        <juego>
+            <id>9</id>
+            <titulo>Cuphead</titulo>
+            <genero>Indie</genero>
+            <anyo_lanzamiento>2017/09/29</anyo_lanzamiento>
+            <precio>15,50</precio>
+            <pegi>+16</pegi>
+        </juego>
+        <juego>
+            <id>10</id>
+            <titulo>Grand Theft Aunto V</titulo>
+            <genero>Sandbox</genero>
+            <anyo_lanzamiento>2013/09/17</anyo_lanzamiento>
+            <precio>49,90</precio>
+            <pegi>+18</pegi>
+        </juego>
+        <juego>
+            <id>11</id>
+            <titulo>Tom Clancy's Rainbow Six: Siege</titulo>
+            <genero>Shooter</genero>
+            <anyo_lanzamiento>2015/04/07</anyo_lanzamiento>
+            <precio>24,99</precio>
+            <pegi>+18</pegi>
+        </juego>
+        <juego>
+            <id>12</id>
+            <titulo>The Last Of Us Part II</titulo>
+            <genero>Supervivencia Horror</genero>
+            <anyo_lanzamiento>2020/06/19</anyo_lanzamiento>
+            <precio>26,95</precio>
             <pegi>+18</pegi>
         </juego>
     </juegos>
