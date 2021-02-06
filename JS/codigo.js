@@ -37,15 +37,15 @@ function muestraInicio() {
 
 function muestraTienda() {
     ocultarFormularios();
-    
-    
+
+
     tienda.listarJuegos();
 }
 
 function muestraBiblioteca() {
     ocultarFormularios();
 
-    
+
 }
 
 function muestraUsuario() {
@@ -130,7 +130,14 @@ function altaUsuario() {
     } else {
         let iPosicion = tienda.clientes.length;
 
-        let oUsuario = new Cliente(iPosicion + 1, sNIF, sNombre, sApellidos, dFecha, sEmail);
+
+        let arrayFecha = dFecha.split("/");
+
+        let dFechaCambiada = new Date(arrayFecha[2], arrayFecha[1] - 1, arrayFecha[0]);
+
+
+
+        let oUsuario = new Cliente(iPosicion + 1, sNIF, sNombre, sApellidos, dFechaCambiada, sEmail);
 
         if (tienda.registrarCliente(oUsuario)) {
             alert("Cliente dado de alta correctamente");
@@ -168,7 +175,12 @@ function altaJuego() {
     } else {
         let iPosicion = tienda.juegos.length;
 
-        let oJuego = new Juego(iPosicion + 1, sTitulo, sGenero, dFechaLanzamiento, iPrecio, iPegi);
+
+        let arrayFecha = dFechaLanzamiento.split("/");
+
+        let dFechaCambiada = new Date(arrayFecha[2], arrayFecha[1] - 1, arrayFecha[0]);
+
+        let oJuego = new Juego(iPosicion + 1, sTitulo, sGenero, dFechaCambiada, iPrecio, iPegi);
 
         if (tienda.registrarJuego(oJuego)) {
             alert("Juego dado de alta correctamente");
