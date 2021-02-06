@@ -8,12 +8,16 @@ document.getElementById("btnInicio").addEventListener("click", muestraInicio);
 document.getElementById("btnTienda").addEventListener("click", muestraTienda);
 document.getElementById("btnBiblioteca").addEventListener("click", muestraBiblioteca);
 document.getElementById("btnUsuario").addEventListener("click", muestraUsuario);
-document.getElementById("btnAdministrar").addEventListener("click", muestraAdministracion);
+//document.getElementById("btnAdministrar").addEventListener("click", muestraAdministracion);
+document.getElementById("btnAltaSuscriptor").addEventListener("click", muestraFormSuscriptor);
+document.getElementById("btnAltaCliente").addEventListener("click", muestraFormAltaCliente);
+document.getElementById("btnAltaJuego").addEventListener("click", muestraFormAltaJuego);
 //-----Fin botones de navegacion superior-------------------
 document.getElementById("btnAceptarAltaPersona").addEventListener("click", altaUsuario);
 document.getElementById("btnAceptarAltaJuego").addEventListener("click", altaJuego);
 document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSuscriptor);
 document.getElementById("btnCargarDatos").addEventListener("click", cargarDatos);
+
 //--------------------------------------------------------------------------------------//
 
 
@@ -43,19 +47,19 @@ function muestraUsuario() {
     ocultarFormularios();
 }
 
-function muestraAdministracion() {
+function muestraFormSuscriptor(){
 
     ocultarFormularios();
-
-    let form = document.getElementsByName("formAdministracion");
-
-    for (let index = 0; index < form.length; index++) {
-        form[index].style.display = "block";
-
-    }
+    document.getElementById("formAdministracionSuscriptor").style.display = "block";
 }
-
-
+function muestraFormAltaCliente(){
+    ocultarFormularios();
+    document.getElementById("formAdministracionUsuario").style.display = "block";
+}
+function muestraFormAltaJuego(){
+    ocultarFormularios();
+    document.getElementById("formAdministracionJuegos").style.display = "block";
+}
 //Función para Ocultar los Formularios y el Área de Listado
 function ocultarFormularios() {
 
@@ -203,6 +207,22 @@ function _buscaJuego(titulo, añoLanzamiento) {
 
     return oJuegoExistente;
 
+}
+function _buscarCompra(idJuego, idCliente){
+
+    let oCompraExistente = null;
+    oCompraExistente = tienda.compras.find(oCompra => oCompra.idCliente == idCliente && oCompra.idJuego == idJuego);
+
+    return oCompraExistente;
+}
+function _buscarSuscripcion(idCliente, fechaExp){
+
+    let oSubscripcionExistente = null;
+
+    //Obtenemos la fecha de realización
+    //TODO: fechaExp
+    oSubscripcionExistente = tienda.subscripciones.find(oSubscripcion => oSubscripcion.idCliente == idCliente && oSubscripcion.fechaExp.fechaExp.isAfter(fechaExp));
+    return oSubscripcionExistente;
 }
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 

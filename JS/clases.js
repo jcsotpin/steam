@@ -3,7 +3,8 @@ class Tienda {
     constructor() {
             this.juegos = [];
             this.clientes = [];
-            this.suscriptores = [];
+            this.subscripciones = [];
+            this.compras = [];
         }
         //Función para añadir juegos
     registrarJuego(juego) {
@@ -37,6 +38,32 @@ class Tienda {
             }
 
         }
+    registrarCompra(compra){
+
+        let oCompraExistente = null;
+
+        oCompraExistente = _buscarCompra(compra.idJuego, compra.idCliente);
+
+        if(oCompraExistente == null){
+            this.compras.push(compra);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    registrarSubscripcion(subscripcion){
+
+        let oSubscripcionExistente = null;
+
+        oSubscripcionExistente = _buscarSuscripcion(subscripcion.idCliente, subscripcion.fechaExp);
+
+        if(oSubscripcionExistente == null){
+            this.subscripciones.push(subscripcion);
+            return true;
+        }else{
+            return false;
+        }
+    }
         //Funcion para listar los juegos
     listarJuegos() {
 
@@ -237,9 +264,10 @@ Compra.prototype.toHTMLRow = function() {
 
 class Subscripcion {
 
-    constructor(sIdSubscripcion, dFechaExp, dPrecio) {
+    constructor(sIdSubscripcion, sIdCliente, dFechaExp, dPrecio) {
 
         this.idSubscripcion = sIdSubscripcion;
+        this.idCliente = sIdCliente;
         this.fechaExp = dFechaExp;
         this.precio = dPrecio;
     }
@@ -249,6 +277,7 @@ Subscripcion.prototype.toHTMLRow = function() {
 
     let sFila = "<tr>";
     sFila += "<td>" + this.idSubscripcion + "</td>";
+    sFila += "<td>" + this.idCliente +"</td>";
     sFila += "<td>" + this.fechaExp + "</td>";
     sFila += "<td>" + this.precio + "</td>";
 
