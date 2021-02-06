@@ -71,6 +71,11 @@ function muestraFormAltaJuego() {
 //Función para Ocultar los Formularios y el Área de Listado
 function ocultarFormularios() {
 
+    let oTabla = document.getElementById("lista");
+    if(oTabla != null){
+        oTabla.remove();
+    }
+    
     let arrayFormularios = document.getElementsByTagName("form");
 
     //Oculta los formularios
