@@ -10,6 +10,7 @@
 
     <link href="./CSS/Stylesheet.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <style>
         body{
 	background-color: ghostwhite;
@@ -19,42 +20,43 @@
 	}
 
     </style>
+
 </head>
 
 <body>
-    <div id="menu" class="container-fluid bg-info">
-        <div class="row"><img class="logo" src="./IMG/Steam-Logo.png"></div>
+    <!--  <div id="menu" class="container-fluid bg-info">
+        <div class="row"></div>
         <br>
         <br>
-    </div>
-        <!--Bloque Menú de opciones-->
-        
-       <nav class="navbar navbar-inverse">
+    </div> -->
+    <!--Bloque Menú de opciones-->
+
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
-          <div class="navbar-header">
-              
-            <a class="navbar-brand" href="#">SteamDaw</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class=""><a href="#" id="btnInicio">INICIO</a></li>
-            <li class=""><a href="#" id="btnTienda">TIENDA</a></li>
-            <li class=""><a href="#" id="btnBiblioteca">BIBLIOTECA</a></li>
-            <li class=""><a href="#" id="btnUsuario">USUARIO</a></li>
-            
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">ADMINISTRAR
+            <div class="navbar-header">
+
+                <a class="navbar-brand" href="#"><img class="logo" src="./IMG/Steam-Logo.png"></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class=""><a href="#" id="btnInicio">INICIO</a></li>
+                <li class=""><a href="#" id="btnTienda">TIENDA</a></li>
+                <li class=""><a href="#" id="btnBiblioteca">BIBLIOTECA</a></li>
+                <!--  <li class=""><a href="#" id="btnUsuario">USUARIO</a></li> -->
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">ADMINISTRAR
                 <span class="caret"></span></a>
-                <ul class="dropdown-menu" id="btnAdministrar">
-                  <li><a href="#" id="btnAltaSuscriptor">Alta suscriptor</a></li>
-                  <li><a href="#" id="btnAltaCliente">Alta Cliente</a></li>
-                  <li><a href="#" id="btnAltaJuego">Alta Juego</a></li>
-                  <li><a href="#" id="btnAltaSuscriptor">Alta Suscriptor</a></li>
-                </ul>
-            </li>
-              <li class=""><a href="#" id="btnCargarDatos">CARGAR DATOS</a></li>
-          </ul>
+                    <ul class="dropdown-menu" id="btnAdministrar">
+                        <li><a href="#" id="btnAltaSuscriptor">Alta suscriptor</a></li>
+                        <li><a href="#" id="btnAltaCliente">Alta Cliente</a></li>
+                        <li><a href="#" id="btnAltaJuego">Alta Juego</a></li>
+                        <!--  <li><a href="#" id="btnAltaSuscriptor">Alta Suscriptor</a></li> -->
+                    </ul>
+                </li>
+                <li class=""><a href="#" id="btnCargarDatos">CARGAR DATOS</a></li>
+            </ul>
         </div>
-      </nav> 
+    </nav>
     <!--Fin Bloque Menú de Opciones-->
 
     <!--Bloque de Formularios-->
@@ -126,7 +128,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="btnAceptarAltaPersona"></label>
                         <div class="col-md-4">
-                            <input type="button" id="btnAceptarAltaPersona" name="btnAceptarAltaPersona"  class="btn btn-info" value="Registrar Usuario" />
+                            <input type="button" id="btnAceptarAltaPersona" name="btnAceptarAltaPersona" class="btn btn-info" value="Registrar Usuario" />
                         </div>
                     </div>
 
@@ -170,11 +172,7 @@
                             <input id="txtPegi" name="txtPegi" type="text" placeholder="PEGI" class="form-control input-md">
                         </div>
                     </div>
-
-
-
                     <br>
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="btnAceptarAltaJuego"></label>
                         <div class="col-md-4">
@@ -186,9 +184,27 @@
             </form>
 
 
+
+
+
+
+
+
             <!--Bloque de Listados-->
             <h3 id="titulo"></h3>
             <div class="col-md-4" id="areaListado"></div>
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
     </div>
     <!--Fin de Bloque de Listados-->
