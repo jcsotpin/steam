@@ -7,7 +7,7 @@ var tienda = new Tienda();
 document.getElementById("btnInicio").addEventListener("click", muestraInicio);
 document.getElementById("btnTienda").addEventListener("click", muestraTienda);
 document.getElementById("btnBiblioteca").addEventListener("click", muestraBiblioteca);
-document.getElementById("btnUsuario").addEventListener("click", muestraUsuario);
+/* document.getElementById("btnUsuario").addEventListener("click", muestraUsuario); */
 //document.getElementById("btnAdministrar").addEventListener("click", muestraAdministracion);
 document.getElementById("btnAltaSuscriptor").addEventListener("click", muestraFormSuscriptor);
 document.getElementById("btnAltaCliente").addEventListener("click", muestraFormAltaCliente);
@@ -50,18 +50,21 @@ function muestraBiblioteca() {
 
 function muestraUsuario() {
     ocultarFormularios();
+    document.getElementById("formUsuario").style.display = "block";
 }
 
-function muestraFormSuscriptor(){
+function muestraFormSuscriptor() {
 
     ocultarFormularios();
     document.getElementById("formAdministracionSuscriptor").style.display = "block";
 }
-function muestraFormAltaCliente(){
+
+function muestraFormAltaCliente() {
     ocultarFormularios();
     document.getElementById("formAdministracionUsuario").style.display = "block";
 }
-function muestraFormAltaJuego(){
+
+function muestraFormAltaJuego() {
     ocultarFormularios();
     document.getElementById("formAdministracionJuegos").style.display = "block";
 }
@@ -95,6 +98,7 @@ function limpiarInputs(inputs) {
 }
 
 
+
 //--------------------------- FIN CONTROL VISUAL UI--------------------------------------------//
 
 
@@ -114,17 +118,19 @@ function altaUsuario() {
     let sNombre = inputs[0].value;
     let sApellidos = inputs[1].value;
     let dFecha = inputs[2].value;
-    let sEmail = inputs[3].value;
+    let sNIF = inputs[3].value;
+    let sEmail = inputs[4].value;
 
     let res = validaExpRegUsuario();
 
-    if (res == true) {
-        alert("noooo");
+    if (res != "") {
+        alert(res);
+
 
     } else {
         let iPosicion = tienda.clientes.length;
 
-        let oUsuario = new Cliente(iPosicion + 1, sNombre, sApellidos, dFecha, sEmail);
+        let oUsuario = new Cliente(iPosicion + 1, sNIF, sNombre, sApellidos, dFecha, sEmail);
 
         if (tienda.registrarCliente(oUsuario)) {
             alert("Cliente dado de alta correctamente");
@@ -156,8 +162,9 @@ function altaJuego() {
 
     let res = validaExpRegJuego();
 
-    if (res == true) {
-        alert("nooJuegoNooo");
+    if (res != "") {
+        alert(res);
+
     } else {
         let iPosicion = tienda.juegos.length;
 
@@ -183,15 +190,40 @@ function altaSuscriptor() {
     let inputs = form.getElementsByTagName("input");
 
     let sNIF = inputs[0];
-    let iPosicion = tienda.suscriptores.length;
 
-    //TO DO devuelve el id del tio que existe usando el nif para la busqueda
-    let iID = buscaNIF(sNIF);
+    let res = validarNIF();
+    if (res != "") {
+        alert(res);
+    } else {
 
-    if (iID != 0) {
-        let oSuscriptor = new Subscripcion(iPosicion + 1, iID);
+        let iPosicion = tienda.subscripciones.length;
+        let dFechaActual = new Date();
+        let dFechaExpiracion = new Date();
+        dFechaExpiracion.setMonth(dFechaActual.getMonth() + 1);
+
+
+        let iIdCliente = buscaIdCliente(sNIF);
+
+        if (iIdCliente != 0) {
+            let oSubcriptorNuevo = new Subscripcion(iPosicion, iIdCliente, dFechaExpiracion);
+            console.log(oSubcriptorNuevo);
+
+            if (tienda.registrarSubscripcion(oSubcriptorNuevo)) {
+                alert("Subscriptor dado de alta");
+                limpiarInputs(inputs);
+                ocultarFormularios();
+            } else {
+                alert("Ya existe esa subscripción");
+            }
+        } else {
+            alert("El cliente no existe para suscribirse");
+        }
+
+
+
+
+
     }
-
 }
 
 
@@ -213,55 +245,69 @@ function _buscaJuego(titulo, añoLanzamiento) {
     return oJuegoExistente;
 
 }
-function _buscarCompra(idJuego, idCliente){
+
+function _buscarCompra(idJuego, idCliente) {
 
     let oCompraExistente = null;
     oCompraExistente = tienda.compras.find(oCompra => oCompra.idCliente == idCliente && oCompra.idJuego == idJuego);
 
     return oCompraExistente;
 }
-function _buscarSuscripcion(idCliente, fechaExp){
+
+function _buscarSuscripcion(idCliente, fechaExp) {
 
     let oSubscripcionExistente = null;
 
     //Obtenemos la fecha de realización
     //TODO: fechaExp
-    oSubscripcionExistente = tienda.subscripciones.find(oSubscripcion => oSubscripcion.idCliente == idCliente && oSubscripcion.fechaExp.fechaExp.isAfter(fechaExp));
+    oSubscripcionExistente = tienda.subscripciones.find(oSubscripcion => oSubscripcion.idCliente == idCliente && oSubscripcion.fechaExp > (fechaExp));
     return oSubscripcionExistente;
+}
+
+function buscaIdCliente(sNIF) {
+    let iIdDevuelto = 0;
+    console.log(sNIF);
+    for (let index = 0; index < tienda.clientes.length; index++) {
+        console.log(tienda.clientes[index]);
+        if (tienda.clientes[index].sNIF == sNIF) {
+
+            iIdDevuelto = tienda.clientes[index].iId;
+        }
+
+    }
+    return iIdDevuelto;
 }
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
 //------------------------------AÑADIDO DE DATOS CON XML----------------------------------------------//
 
-function loadXMLDoc(filename)
-{
-	if (window.XMLHttpRequest)
-	  {
-	  var xhttp=new XMLHttpRequest();
-	  }
-	else // code for IE5 and IE6
-	  {
-	  var xhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
-	xhttp.open("GET",filename,false);
-	
-	xhttp.send();
-	
-	return xhttp.responseXML;
-} 
-function cargarDatos(){
+function loadXMLDoc(filename) {
+    if (window.XMLHttpRequest) {
+        var xhttp = new XMLHttpRequest();
+    } else // code for IE5 and IE6
+    {
+        var xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.open("GET", filename, false);
 
-    
+    xhttp.send();
+
+    return xhttp.responseXML;
+}
+
+function cargarDatos() {
+
+
     var oXML = loadXMLDoc("../steam.xml");
     var oJuegos = oXML.getElementsByTagName("juego");
     var oClientes = oXML.getElementsByTagName("cliente");
     var oCompras = oXML.getElementsByTagName("compra");
     var oSubscripciones = oXML.getElementsByTagName("subscripcion");
-   
-    
+
+
 
     //Introduzco los juegos
-    for(var i=0; i<oJuegos.length; i++){
+    for (var i = 0; i < oJuegos.length; i++) {
 
         // console.log(oJuegos[i]);
         var titulo = oJuegos[i].getElementsByTagName("titulo")[0].textContent;
@@ -270,49 +316,69 @@ function cargarDatos(){
         var precio = oJuegos[i].getElementsByTagName("precio")[0].textContent;
         var pegi = oJuegos[i].getElementsByTagName("pegi")[0].textContent;
 
-        var juego = new Juego(i, titulo, genero, anyo, precio, pegi);
+
+        let arrayFecha = anyo.split("/");
+
+        let dFecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
+
+        var juego = new Juego(i + 1, titulo, genero, dFecha, parseFloat(precio), pegi);
 
         tienda.registrarJuego(juego);
 
     }
     //Introduzco los usuarios
 
-    for(var i=0; i<oClientes.length;i++){
+    for (var i = 0; i < oClientes.length; i++) {
 
+        var id = oClientes[i].getElementsByTagName("id")[0].textContent;
+        var nif = oClientes[i].getElementsByTagName("nif")[0].textContent;
         var nombre = oClientes[i].getElementsByTagName("nombre")[0].textContent;
         var apellidos = oClientes[i].getElementsByTagName("apellidos")[0].textContent;
         var fecha_nac = oClientes[i].getElementsByTagName("fecha_nac")[0].textContent;
         var correo = oClientes[i].getElementsByTagName("email")[0].textContent;
 
-        var usuario = new Cliente(i, nombre, apellidos, fecha_nac, correo);
+        let arrayFecha = fecha_nac.split("/");
+
+        let dFecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
+
+        var usuario = new Cliente(parseInt(id), nif, nombre, apellidos, dFecha, correo);
 
         tienda.registrarCliente(usuario);
     }
 
     //Introduzco las compras
 
-    for(var i=0; i<oCompras.length;i++){
+    for (var i = 0; i < oCompras.length; i++) {
 
         var id_cliente = oCompras[i].getElementsByTagName("id_cliente")[0].textContent;
         var id_juego = oCompras[i].getElementsByTagName("id_juego")[0].textContent;
         var fecha = oCompras[i].getElementsByTagName("fecha")[0].textContent;
         var coste = oCompras[i].getElementsByTagName("coste_compra")[0].textContent;
 
-        var compra =  new Compra (i, id_cliente, id_juego, fecha, coste);
+        let arrayFecha = fecha.split("/");
+
+        let dFecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
+
+        var compra = new Compra(i + 1, parseInt(id_cliente), parseInt(id_juego), dFecha, parseFloat(coste));
 
         tienda.registrarCompra(compra);
     }
 
-    for(var i=0; i<oSubscripciones.length; i++){
-        var fechaExp = oSubscripciones[i].getElementsByTagName("id")[0].textContent;
-        var precioSub = oSubscripciones[i].getElementsByTagName("precio")[0].textContent;
+    for (var i = 0; i < oSubscripciones.length; i++) {
+        var idCliente = oSubscripciones[i].getElementsByTagName("id")[0].textContent;
+        var fechaExp = oSubscripciones[i].getElementsByTagName("fechaExpiracion")[0].textContent;
 
-        var subscripcion =  new Subscripcion (i, fechaExp, precioSub);
+        let arrayFecha = fechaExp.split("/");
+
+        let fecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
+
+        var subscripcion = new Subscripcion(i + 1, parseInt(idCliente), fecha);
 
         tienda.registrarSubscripcion(subscripcion);
     }
 
     alert("Se han cargado los datos correctamente.");
 }
+
 
 //------------------------------FIN AÑADIDO DE DATOS CON XML----------------------------------------------//

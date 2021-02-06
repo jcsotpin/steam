@@ -26,44 +26,44 @@ class Tienda {
         //Función para añadir nuevos clientes
     registrarCliente(cliente) {
 
-            let oClienteExistente = null;
+        let oClienteExistente = null;
 
-            oClienteExistente = _buscarCliente(cliente.sEmail);
+        oClienteExistente = _buscarCliente(cliente.sEmail);
 
-            if (oClienteExistente == null) {
-                this.clientes.push(cliente);
-                return true;
-            } else {
-                return false;
-            }
-
+        if (oClienteExistente == null) {
+            this.clientes.push(cliente);
+            return true;
+        } else {
+            return false;
         }
-    registrarCompra(compra){
+
+    }
+    registrarCompra(compra) {
 
         let oCompraExistente = null;
 
         oCompraExistente = _buscarCompra(compra.idJuego, compra.idCliente);
 
-        if(oCompraExistente == null){
+        if (oCompraExistente == null) {
             this.compras.push(compra);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    registrarSubscripcion(subscripcion){
+    registrarSubscripcion(subscripcion) {
 
-        let oSubscripcionExistente = null;
+            let oSubscripcionExistente = null;
 
-        oSubscripcionExistente = _buscarSuscripcion(subscripcion.idCliente, subscripcion.fechaExp);
+            oSubscripcionExistente = _buscarSuscripcion(subscripcion.idCliente, subscripcion.fechaExp);
 
-        if(oSubscripcionExistente == null){
-            this.subscripciones.push(subscripcion);
-            return true;
-        }else{
-            return false;
+            if (oSubscripcionExistente == null) {
+                this.subscripciones.push(subscripcion);
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
         //Funcion para listar los juegos
     listarJuegos() {
 
@@ -194,9 +194,10 @@ class Juego {
 
 
 class Cliente {
-    constructor(iID, sNombre, sApellidos, dFecha, sEmail) {
+    constructor(iID, sNIF, sNombre, sApellidos, dFecha, sEmail) {
 
         this.iId = iID;
+        this.sNIF = sNIF;
         this.sNombre = sNombre;
         this.sApellidos = sApellidos;
         this.dFecha = dFecha;
@@ -289,12 +290,12 @@ Compra.prototype.toHTMLRow = function() {
 
 class Subscripcion {
 
-    constructor(sIdSubscripcion, sIdCliente, dFechaExp, dPrecio) {
+    constructor(sIdSubscripcion, sIdCliente, dFechaExp) {
 
         this.idSubscripcion = sIdSubscripcion;
         this.idCliente = sIdCliente;
         this.fechaExp = dFechaExp;
-        this.precio = dPrecio;
+        this.precio = parseFloat("10,00");
     }
 }
 
@@ -302,10 +303,9 @@ Subscripcion.prototype.toHTMLRow = function() {
 
     let sFila = "<tr>";
     sFila += "<td>" + this.idSubscripcion + "</td>";
-    sFila += "<td>" + this.idCliente +"</td>";
+    sFila += "<td>" + this.idCliente + "</td>";
     sFila += "<td>" + this.fechaExp + "</td>";
     sFila += "<td>" + this.precio + "</td>";
 
-        return sFila;
-    }
-    
+    return sFila;
+}
