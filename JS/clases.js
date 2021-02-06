@@ -86,7 +86,7 @@ class Tienda {
        cell = row.insertCell(-1);
        cell.textContent = "PEGI";
        cell = row.insertCell(-1);
-       cell.textContent = "Comprar";
+       cell.textContent = "Comprar ";
 
        var tbody = document.createElement("TBODY");
        oTabla.appendChild(tbody);
