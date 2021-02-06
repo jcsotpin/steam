@@ -17,6 +17,14 @@
             <precio>27.99</precio>
             <pegi>+3</pegi>
         </juego>
+         <juego>
+            <id>3</id>
+            <titulo>Red Dead Redemption II</titulo>
+            <genero>Sandbox</genero>
+            <anyo_lanzamiento>2018</anyo_lanzamiento>
+            <precio>59,99</precio>
+            <pegi>+18</pegi>
+        </juego>
     </juegos>
     <clientes>
         <cliente>
