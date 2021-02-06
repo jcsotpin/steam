@@ -113,8 +113,8 @@ function altaUsuario() {
 
     let res = validaExpRegUsuario();
 
-    if (res == true) {
-        alert("noooo");
+    if (res != "") {
+        alert(res);
 
     } else {
         let iPosicion = tienda.clientes.length;
@@ -151,8 +151,8 @@ function altaJuego() {
 
     let res = validaExpRegJuego();
 
-    if (res == true) {
-        alert("nooJuegoNooo");
+    if (res != "") {
+        alert(res);
     } else {
         let iPosicion = tienda.juegos.length;
 
@@ -178,13 +178,19 @@ function altaSuscriptor() {
     let inputs = form.getElementsByTagName("input");
 
     let sNIF = inputs[0];
-    let iPosicion = tienda.suscriptores.length;
+    let res = validarNIF();
+    if(res != ""){
+        alert(res);
+    }else{
 
-    //TO DO devuelve el id del tio que existe usando el nif para la busqueda
-    let iID = buscaNIF(sNIF);
+        let iPosicion = tienda.suscriptores.length;
 
-    if (iID != 0) {
-        let oSuscriptor = new Subscripcion(iPosicion + 1, iID);
+        //TO DO devuelve el id del tio que existe usando el nif para la busqueda
+        let iID = buscaNIF(sNIF);
+
+        if (iID != 0) {
+            let oSuscriptor = new Subscripcion(iPosicion + 1, iID);
+        }
     }
 
 }

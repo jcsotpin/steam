@@ -10,148 +10,180 @@ let expRegGenero = /^[a-zA-Zàáâäãåąčćęèéêëėįìíîïłńòóôö
 let expRegPrecio = /^\d{1,3}\,\d{2}$/;
 let expRegPegi = /^\d{1,2}$/;
 
-//let expRegPegi = /^[1-9]{1,2}/;
 
-/* function valida_envia() {
-    //valido el DNI
-    if (document.formAdministracion.txtNIF.value.length == 0) {
-        alert("Tiene que escribir su DNI")
-        document.fvalida.txtNIF.focus()
-        return 0;
-
-    }
-
-    //valido el nombre
-    if (document.formAdministracion.txtNombre.value.length == 0) {
-        alert("Tiene que escribir su Nombre")
-        document.fvalida.txtNombre.focus()
-        return 0;
-    }
-
-    //valido el apellidos
-    if (document.formAdministracion.txtApellidos.value.length == 0) {
-        alert("Tiene que escribir su Apellido")
-        document.fvalida.txtApellidos.focus()
-        return 0;
-    }
-
-    //valido el Correo
-    if (document.formAdministracion.txtDireccion.value.length == 0) {
-        alert("Tiene que escribir su Correo Electronico")
-        document.fvalida.txtDireccion.focus()
-        return 0;
-    }
-
-    //el formulario se envia
-    alert("Muchas gracias por enviar el formulario");
-    document.fvalida.submit();
-}
- */
-
-
+//Función Validar Datos Usuario
 function validaExpRegUsuario() {
 
-    let sNombre = document.getElementById("txtNombreCliente").value;
-    let sApeliidos = document.getElementById("txtApellidosCliente").value;
-    let dNacimiento = document.getElementById("txtFechaCliente").value;
-    let sEmail = document.getElementById("txtDireccionCliente").value;
-    let bError = false;
+    let sNIF = document.getElementById("txtNIFUsuario").value.trim();
+    let sNombre = document.getElementById("txtNombreCliente").value.trim();
+    let sApeliidos = document.getElementById("txtApellidosCliente").value.trim();
+    let dNacimiento = document.getElementById("txtFechaCliente").value.trim();
+    let sEmail = document.getElementById("txtDireccionCliente").value.trim();
+    let bValido = true;
+    let sErrores = "";
 
-    if (!expRegNombreCliente.test(sNombre)) {
-        document.getElementById("txtNombreCliente").classList.add("error");
-        document.getElementById("txtNombreCliente").focus();
-        bError = true;
-    } else {
-        document.getElementById("txtNombreCliente").classList.remove("error");
-
-        if (!exRegApellidosCliente.test(sApeliidos)) {
-            document.getElementById("txtApellidosCliente").classList.add("error");
-            document.getElementById("txtApellidosCliente").focus();
-            bError = true;
-        } else {
-            document.getElementById("txtApellidosCliente").classList.remove("error");
-            if (!expRegFecha.test(dNacimiento)) {
-                document.getElementById("txtFechaCliente").classList.add("error");
-                document.getElementById("txtFechaCliente").focus();
-                bError = true;
-            } else {
-                document.getElementById("txtFechaCliente").classList.remove("error");
-                if (!expRegEmail.test(sEmail)) {
-                    document.getElementById("txtDireccionCliente").classList.add("error");
-                    document.getElementById("txtDireccionCliente").focus();
-                    bError = true;
-                } else {
-                    document.getElementById("txtDireccionCliente").classList.remove("error");
-                }
-            }
-
+    //Validar NIF
+    if (!expRegDNI.test(sNIF)) {
+        if(bValido){
+            document.getElementById("txtNIFUsuario").focus();
+            bValido = false;
         }
-
-
+        sErrores += "\nEl nombre no tiene el formato correcto";
+        document.getElementById("txtNIFUsuario").classList.add("error");
+    }
+    else{
+        document.getElementById("txtNIFUsuario").classList.remove("error");
     }
 
+    //Validar Nombre
+    if (!expRegNombreCliente.test(sNombre)) {
+        if(bValido){
+            document.getElementById("txtNombreCliente").focus();
+            bValido = false;
+        }
+        sErrores += "\nEl nombre no tiene el formato correcto";
+        document.getElementById("txtNombreCliente").classList.add("error");
+    }
+    else{
+        document.getElementById("txtNombreCliente").classList.remove("error");
+    }
 
-    return bError;
-
-
+    //Validar Apellidos
+    if (!exRegApellidosCliente.test(sApeliidos)) {
+        if(bValido){
+            document.getElementById("txtApellidosCliente").focus();
+            bValido = false;
+        }    
+        sErrores += "\nLos apellidos no tienen el formato correcto";
+        document.getElementById("txtApellidosCliente").classList.add("error");
+    }
+    else{
+        document.getElementById("txtApellidosCliente").classList.remove("error");
+    }       
+            
+    //Validar Fecha de Nacimiento    
+    if (!expRegFecha.test(dNacimiento)) {
+        if(bValido){
+            document.getElementById("txtFechaCliente").focus();
+            bValido = false;
+        }        
+        sErrores += "\nLa fecha de nacimiento no tienen el formato correcto";
+        document.getElementById("txtFechaCliente").classList.add("error");
+    }                
+    else {
+        document.getElementById("txtFechaCliente").classList.remove("error");
+    }        
+        
+    //Validar Email  
+    if (!expRegEmail.test(sEmail)) {
+        if(bValido){
+            document.getElementById("txtDireccionCliente").focus();
+            bValido = false;
+        }            
+        sErrores += "\nEl email no tienen el formato correcto";
+        document.getElementById("txtDireccionCliente").classList.add("error");
+    }
+    else {
+        document.getElementById("txtDireccionCliente").classList.remove("error");
+    }
+    return sErrores;
 }
 
 
+
+//Función Validar Datos Juego
 function validaExpRegJuego() {
 
-    let sTitulo = document.getElementById("txtTitulo").value;
-    let sGenero = document.getElementById("txtGenero").value;
-    let dLanzamiento = document.getElementById("txtFechaJuego").value;
-    let iPrecio = document.getElementById("txtPrecio").value;
-    let iPegi = document.getElementById("txtPegi").value;
-    let bError = false;
+    let sTitulo = document.getElementById("txtTitulo").value.trim();
+    let sGenero = document.getElementById("txtGenero").value.trim();
+    let dLanzamiento = document.getElementById("txtFechaJuego").value.trim();
+    let iPrecio = document.getElementById("txtPrecio").value.trim();
+    let iPegi = document.getElementById("txtPegi").value.trim();
+    let bValido = true;
+    let sErrores = "";
 
+    //Validar Titulo
     if (!expRegTitulo.test(sTitulo)) {
+        if(bValido){
+            document.getElementById("txtTitulo").focus();
+            bValido = false;
+        }
+        sErrores += "\nEl título no tienen el formato correcto";
         document.getElementById("txtTitulo").classList.add("error");
-        document.getElementById("txtTitulo").focus();
-        bError = true;
-    } else {
+    } 
+    else {
         document.getElementById("txtTitulo").classList.remove("error");
-
-        if (!expRegGenero.test(sGenero)) {
-            document.getElementById("txtGenero").classList.add("error");
+    }
+        
+    //Validar Genero  
+    if (!expRegGenero.test(sGenero)) {
+        if(bValido){
             document.getElementById("txtGenero").focus();
-            bError = true;
-        } else {
+            bValido = false;
+        }    
+        sErrores += "\nEl género no tienen el formato correcto";
+        document.getElementById("txtGenero").classList.add("error");    
+        } 
+        else {
             document.getElementById("txtGenero").classList.remove("error");
-
-            if (!expRegFecha.test(dLanzamiento)) {
-                document.getElementById("txtFechaJuego").classList.add("error");
-                document.getElementById("txtFechaJuego").focus();
-                bError = true;
-            } else {
-                document.getElementById("txtFechaJuego").classList.remove("error");
-
-                if (!expRegPrecio.test(iPrecio)) {
-                    document.getElementById("txtPrecio").classList.add("error");
-                    document.getElementById("txtPrecio").focus();
-                    bError = true;
-                } else {
-                    document.getElementById("txtPrecio").classList.remove("error");
-
-                    if (!expRegPegi.test(iPegi)) {
-                        console.log(iPegi);
-                        document.getElementById("txtPegi").classList.add("error");
-                        document.getElementById("txtPegi").focus();
-                        bError = true;
-                    } else {
-                        document.getElementById("txtPegi").classList.remove("error");
-                    }
-                }
-            }
-
         }
 
+        //Validar Fecha de Lanzamiento
+        if (!expRegFecha.test(dLanzamiento)) {
+            if(bValido){
+                document.getElementById("txtFechaJuego").focus();
+                bValido = false;
+            }    
+            sErrores += "\nLa fecha de lanzamiento no tienen el formato correcto";
+            document.getElementById("txtFechaJuego").classList.add("error");
+            } 
+            else {
+                document.getElementById("txtFechaJuego").classList.remove("error");
+            }
+             
+        //Validar Precio
+        if (!expRegPrecio.test(iPrecio)) {
+            if(bValido){
+                document.getElementById("txtPrecio").focus();
+                bValido = false;
+            }
+            sErrores += "\nEl precio no tienen el formato correcto";
+            document.getElementById("txtPrecio").classList.add("error");
+            }
+            else {
+                document.getElementById("txtPrecio").classList.remove("error");
+            }
 
+        //Validar Pegi
+        if (!expRegPegi.test(iPegi)) {
+            if(bValido){
+                document.getElementById("txtPegi").focus();
+                bValido = false;
+            }
+            sErrores += "\nEl Pegi no tienen el formato correcto";              
+            document.getElementById("txtPegi").classList.add("error");
+            } 
+            else {
+                document.getElementById("txtPegi").classList.remove("error");
+            }
+    return sErrores;
+}
+
+function validarNIF(){
+    //Validar NIF
+    let sNIF = document.getElementById("txtNIF").value.trim();
+    let bValido = true;
+    let sErrores = "";
+
+    if (!expRegDNI.test(sNIF)) {
+        if(bValido){
+            document.getElementById("txtNIF").focus();
+            bValido = false;
+        }
+        sErrores += "\nEl nombre no tiene el formato correcto";
+        document.getElementById("txtNIF").classList.add("error");
     }
-
-
-    return bError;
-
-
+    else{
+        document.getElementById("txtNIF").classList.remove("error");
+    }
 }
