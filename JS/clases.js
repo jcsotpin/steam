@@ -70,6 +70,7 @@ class Tienda {
         ocultarFormularios();
         
         var oTabla = document.createElement("table");
+        
         oTabla.setAttribute('border', '1');
         oTabla.id = "lista";
        var header = oTabla.createTHead();
@@ -84,14 +85,19 @@ class Tienda {
        cell.textContent = "PRECIO";
        cell = row.insertCell(-1);
        cell.textContent = "PEGI";
+       cell = row.insertCell(-1);
+       cell.textContent = "Comprar ";
 
        var tbody = document.createElement("TBODY");
        oTabla.appendChild(tbody);
-
+       var btnCompra = document.createElement("button");
+        btnCompra.setAttribute('value','Comprar');
+        btnCompra.textContent = "Comprar";
        for(var i = 0; i<this.juegos.length; i++){
            
              row = tbody.insertRow(-1);
-            
+             var btnCompra = document.createElement("button");
+             btnCompra.textContent = "Comprar";
             //let juegoIndividual = Object.values(this.juegos[i]);
 
             cell = row.insertCell(-1);
@@ -104,6 +110,8 @@ class Tienda {
             cell.textContent = this.juegos[i]["precio"];
             cell = row.insertCell(-1);
             cell.textContent = this.juegos[i]["pegi"];
+            cell = row.insertCell(-1);
+            cell.appendChild(btnCompra);
            
            
        }
