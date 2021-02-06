@@ -5,7 +5,7 @@
             <id>1</id>
             <titulo>The binding of Isaac</titulo>
             <genero>Indie</genero>
-            <anyo_lanzamiento>2011</anyo_lanzamiento>
+            <anyo_lanzamiento>2011/09/28</anyo_lanzamiento>
             <precio>9.99</precio>
             <pegi>+16</pegi>
         </juego>
@@ -13,7 +13,7 @@
             <id>2</id>
             <titulo>Forza Horizon 4</titulo>
             <genero>Conduccion</genero>
-            <anyo_lanzamiento>2018</anyo_lanzamiento>
+            <anyo_lanzamiento>2018/09/28</anyo_lanzamiento>
             <precio>27.99</precio>
             <pegi>+3</pegi>
         </juego>
@@ -21,7 +21,7 @@
             <id>3</id>
             <titulo>Red Dead Redemption II</titulo>
             <genero>Sandbox</genero>
-            <anyo_lanzamiento>2018</anyo_lanzamiento>
+            <anyo_lanzamiento>2018/10/26</anyo_lanzamiento>
             <precio>59,99</precio>
             <pegi>+18</pegi>
         </juego>
@@ -29,37 +29,42 @@
     <clientes>
         <cliente>
             <id>1</id>
+            <nif>12345678A</nif>
             <nombre>Armando</nombre>
             <apellidos>Jaleo</apellidos>
-            <fecha_nac>13/03/1997</fecha_nac>
+            <fecha_nac>1997/03/13</fecha_nac>
             <email>armandoJaleo@correo.com</email>
         </cliente>
         <cliente>
             <id>2</id>
+             <nif>12345678B</nif>
             <nombre>Lola</nombre>
             <apellidos>Mento</apellidos>
-            <fecha_nac>21/09/1990</fecha_nac>
+            <fecha_nac>1990/09/21</fecha_nac>
             <email>lolaMento@correo.com</email>
         </cliente>
         <cliente>
             <id>3</id>
+             <nif>12345678C</nif>
             <nombre>Susana</nombre>
             <apellidos>Torio</apellidos>
-            <fecha_nac>30/08/1995</fecha_nac>
+            <fecha_nac>1995/08/30</fecha_nac>
             <email>susanaTorio@correo.com</email>
         </cliente>
         <cliente>
             <id>4</id>
+             <nif>12345678D</nif>
             <nombre>Esteban</nombre>
             <apellidos>Dido</apellidos>
-            <fecha_nac>01/12/2000</fecha_nac>
+            <fecha_nac>200/12/01</fecha_nac>
             <email>estebanDido@correo.com</email>
         </cliente>
         <cliente>
             <id>5</id>
+             <nif>12345678E</nif>
             <nombre>Rosa</nombre>
             <apellidos>Gutierrez</apellidos>
-            <fecha_nac>15/04/1998</fecha_nac>
+            <fecha_nac>1998/04/15</fecha_nac>
             <email>rosaGutierrez@correo.com</email>
         </cliente>
     </clientes>
@@ -68,15 +73,14 @@
             <id_compra>1</id_compra>
             <id_cliente>1</id_cliente>
             <id_juego>1</id_juego>
-            <fecha>05/01/2021</fecha>
+            <fecha>2021/01/05</fecha>
             <coste_compra>9.99</coste_compra>
         </compra>
     </compras>
     <subscripciones>
         <subscripcion>
             <id>1</id>
-            <fechaExpiracion>21/02/2021</fechaExpiracion>
-            <precio>15</precio>
+            <fechaExpiracion>2021/02/20</fechaExpiracion>
         </subscripcion>
     </subscripciones>
 </tienda>

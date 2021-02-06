@@ -113,7 +113,8 @@ function altaUsuario() {
     let sNombre = inputs[0].value;
     let sApellidos = inputs[1].value;
     let dFecha = inputs[2].value;
-    let sEmail = inputs[3].value;
+    let sNIF = inputs[3].value;
+    let sEmail = inputs[4].value;
 
     let res = validaExpRegUsuario();
 
@@ -123,7 +124,7 @@ function altaUsuario() {
     } else {
         let iPosicion = tienda.clientes.length;
 
-        let oUsuario = new Cliente(iPosicion + 1, sNombre, sApellidos, dFecha, sEmail);
+        let oUsuario = new Cliente(iPosicion + 1, sNIF, sNombre, sApellidos, dFecha, sEmail);
 
         if (tienda.registrarCliente(oUsuario)) {
             alert("Cliente dado de alta correctamente");
@@ -181,15 +182,33 @@ function altaSuscriptor() {
     let form = document.getElementById("formAdministracionSuscriptor");
     let inputs = form.getElementsByTagName("input");
 
-    let sNIF = inputs[0];
+    let sNIF = inputs[0].value;
     let iPosicion = tienda.subscripciones.length;
+    let dFechaActual = new Date();
+    let dFechaExpiracion = new Date();
+    dFechaExpiracion.setMonth(dFechaActual.getMonth() + 1);
 
-    //TO DO devuelve el id del tio que existe usando el nif para la busqueda
-    let iID = buscaNIF(sNIF);
 
-    if (iID != 0) {
-        let oSuscriptor = new Subscripcion(iPosicion + 1, iID);
+    let iIdCliente = buscaIdCliente(sNIF);
+
+    if (iIdCliente != 0) {
+        let oSubcriptorNuevo = new Subscripcion(iPosicion, iIdCliente, dFechaExpiracion);
+        console.log(oSubcriptorNuevo);
+
+        if (tienda.registrarSubscripcion(oSubcriptorNuevo)) {
+            alert("Subscriptor dado de alta");
+            limpiarInputs(inputs);
+            ocultarFormularios();
+        } else {
+            alert("Ya existe esa subscripción");
+        }
+    } else {
+        alert("El cliente no existe para suscribirse");
     }
+
+
+
+
 
 }
 
@@ -227,8 +246,22 @@ function _buscarSuscripcion(idCliente, fechaExp) {
 
     //Obtenemos la fecha de realización
     //TODO: fechaExp
-    oSubscripcionExistente = tienda.subscripciones.find(oSubscripcion => oSubscripcion.idCliente == idCliente && oSubscripcion.fechaExp.fechaExp.isAfter(fechaExp));
+    oSubscripcionExistente = tienda.subscripciones.find(oSubscripcion => oSubscripcion.idCliente == idCliente && oSubscripcion.fechaExp > (fechaExp));
     return oSubscripcionExistente;
+}
+
+function buscaIdCliente(sNIF) {
+    let iIdDevuelto = 0;
+    console.log(sNIF);
+    for (let index = 0; index < tienda.clientes.length; index++) {
+        console.log(tienda.clientes[index]);
+        if (tienda.clientes[index].sNIF == sNIF) {
+
+            iIdDevuelto = tienda.clientes[index].iId;
+        }
+
+    }
+    return iIdDevuelto;
 }
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
@@ -269,7 +302,12 @@ function cargarDatos() {
         var precio = oJuegos[i].getElementsByTagName("precio")[0].textContent;
         var pegi = oJuegos[i].getElementsByTagName("pegi")[0].textContent;
 
-        var juego = new Juego(i, titulo, genero, anyo, precio, pegi);
+
+        let arrayFecha = anyo.split("/");
+
+        let dFecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
+
+        var juego = new Juego(i + 1, titulo, genero, dFecha, parseFloat(precio), pegi);
 
         tienda.registrarJuego(juego);
 
@@ -278,12 +316,18 @@ function cargarDatos() {
 
     for (var i = 0; i < oClientes.length; i++) {
 
+        var id = oClientes[i].getElementsByTagName("id")[0].textContent;
+        var nif = oClientes[i].getElementsByTagName("nif")[0].textContent;
         var nombre = oClientes[i].getElementsByTagName("nombre")[0].textContent;
         var apellidos = oClientes[i].getElementsByTagName("apellidos")[0].textContent;
         var fecha_nac = oClientes[i].getElementsByTagName("fecha_nac")[0].textContent;
         var correo = oClientes[i].getElementsByTagName("email")[0].textContent;
 
-        var usuario = new Cliente(i, nombre, apellidos, fecha_nac, correo);
+        let arrayFecha = fecha_nac.split("/");
+
+        let dFecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
+
+        var usuario = new Cliente(parseInt(id), nif, nombre, apellidos, dFecha, correo);
 
         tienda.registrarCliente(usuario);
     }
@@ -297,16 +341,24 @@ function cargarDatos() {
         var fecha = oCompras[i].getElementsByTagName("fecha")[0].textContent;
         var coste = oCompras[i].getElementsByTagName("coste_compra")[0].textContent;
 
-        var compra = new Compra(i, id_cliente, id_juego, fecha, coste);
+        let arrayFecha = fecha.split("/");
+
+        let dFecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
+
+        var compra = new Compra(i + 1, parseInt(id_cliente), parseInt(id_juego), dFecha, parseFloat(coste));
 
         tienda.registrarCompra(compra);
     }
 
     for (var i = 0; i < oSubscripciones.length; i++) {
-        var fechaExp = oSubscripciones[i].getElementsByTagName("id")[0].textContent;
-        var precioSub = oSubscripciones[i].getElementsByTagName("precio")[0].textContent;
+        var idCliente = oSubscripciones[i].getElementsByTagName("id")[0].textContent;
+        var fechaExp = oSubscripciones[i].getElementsByTagName("fechaExpiracion")[0].textContent;
 
-        var subscripcion = new Subscripcion(i, fechaExp, precioSub);
+        let arrayFecha = fechaExp.split("/");
+
+        let fecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
+
+        var subscripcion = new Subscripcion(i + 1, parseInt(idCliente), fecha);
 
         tienda.registrarSubscripcion(subscripcion);
     }
