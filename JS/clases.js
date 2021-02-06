@@ -90,14 +90,19 @@ class Tienda {
            
              row = tbody.insertRow(-1);
             
-            let juegoIndividual = Object.values(this.juegos[i]);
+            //let juegoIndividual = Object.values(this.juegos[i]);
 
-            for(var j=1; j<juegoIndividual.length; j++){
-
-                cell = row.insertCell(-1);
-                cell.textContent = juegoIndividual[j];
-             //   console.log(juegoIndividual[j]);
-            }
+            cell = row.insertCell(-1);
+            cell.textContent = this.juegos[i]["titulo"];
+            cell = row.insertCell(-1);
+            cell.textContent = this.juegos[i]["genero"];
+            cell = row.insertCell(-1);
+            cell.textContent = this.juegos[i]["año_lanzamiento"].getFullYear();
+            cell = row.insertCell(-1);
+            cell.textContent = this.juegos[i]["precio"];
+            cell = row.insertCell(-1);
+            cell.textContent = this.juegos[i]["pegi"];
+           
            
        }
        document.body.appendChild(oTabla);
