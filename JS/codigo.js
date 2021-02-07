@@ -18,7 +18,7 @@ document.getElementById("btnAceptarAltaJuego").addEventListener("click", altaJue
 document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSuscriptor);
 document.getElementById("btnBuscaBiblioteca").addEventListener("click", bibliotecaBuscada);
 document.getElementById("btnCargarDatos").addEventListener("click", cargarDatos);
-    
+
 
 //--------------------------------------------------------------------------------------//
 
@@ -35,6 +35,7 @@ ocultarFormularios();
 function muestraInicio() {
 
     ocultarFormularios();
+    document.getElementById("main").style.display = "block";
 }
 
 function muestraTienda() {
@@ -69,21 +70,35 @@ function muestraFormAltaJuego() {
 //Función para Ocultar los Formularios y el Área de Listado
 function ocultarFormularios() {
 
+
+    //Oculta las tablas
     let oTabla = document.getElementsByTagName("table");
     if( document.querySelector("#listadoJuegos")!=null)
     document.querySelector("#listadoJuegos").remove();
     if (oTabla != null) {
-    //    oTabla.remove();
+        //    oTabla.remove();
         // document.querySelector("label").remove();
         // document.querySelector("#comboBoxGenero").remove();
-        
+
         for (let index = 0; index < oTabla.length; index++) {
             oTabla[index].remove();
 
         }
 
     }
-    
+
+
+    //Oculta el div con el comboBox
+    let oDiv = document.querySelector("#listadoJuegos");
+    if (oDiv != null) {
+        oDiv.remove();
+    }
+
+
+    //Oculta el div del inicio "main"
+    document.getElementById("main").style.display = "none";
+
+
 
     let arrayFormularios = document.getElementsByTagName("form");
 
@@ -233,7 +248,7 @@ function altaSuscriptor() {
         let iIdCliente = buscaIdCliente(sNIF);
 
         if (iIdCliente != 0) {
-            let oSubcriptorNuevo = new Suscripcion(iPosicion, parseInt(iIdCliente), dFechaExpiracion);
+            let oSubcriptorNuevo = new Suscripcion(iPosicion + 1, parseInt(iIdCliente), dFechaExpiracion);
             console.log(oSubcriptorNuevo);
 
             if (tienda.registrarsuscripcion(oSubcriptorNuevo)) {
@@ -357,6 +372,13 @@ function _buscaJuegosCliente(id){
 
     return oComprasExistentes;
 }
+function recogeNumCompras() {
+    return tienda.compras.length;
+}
+
+function introduceCompra(oCompra) {
+    tienda.compras.push(oCompra);
+}
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
 //------------------------------AÑADIDO DE DATOS CON XML----------------------------------------------//
@@ -460,13 +482,14 @@ function cargarDatos() {
     alert("Se han cargado los datos correctamente.");
 }
 
-function filtraGenero(){
-   
+function filtraGenero() {
+
     let genero = document.querySelector("#comboBoxGenero").value;
 
     tienda.listarJuegosPorGenero(genero);
-    
+
 }
+
 
 
 //------------------------------FIN AÑADIDO DE DATOS CON XML----------------------------------------------//
