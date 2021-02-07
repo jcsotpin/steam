@@ -71,9 +71,13 @@ function muestraFormAltaJuego() {
 //Función para Ocultar los Formularios y el Área de Listado
 function ocultarFormularios() {
 
-    let oTabla = document.getElementById("lista");
+    let oTabla = document.getElementsByTagName("table");
     if (oTabla != null) {
-        oTabla.remove();
+        for (let index = 0; index < oTabla.length; index++) {
+            oTabla[index].remove();
+
+        }
+
     }
 
     let arrayFormularios = document.getElementsByTagName("form");
@@ -295,6 +299,16 @@ function buscaIdCliente(sNIF) {
 
     }
     return iIdDevuelto;
+}
+
+function _buscarJuegoId(id) {
+
+    let oJuegoADevolver = null;
+
+    oJuegoADevolver = tienda.juegos.find(oJuego => oJuego.id_juego == id);
+
+    return oJuegoADevolver;
+
 }
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
