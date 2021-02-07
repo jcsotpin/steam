@@ -362,6 +362,7 @@ class Tienda {
 
         let inputEmail = document.createElement("input");
         inputEmail.placeholder = "EMAIL";
+        inputEmail.classList.add("normal");
 
         let labelNombreJuego = document.createElement("label");
         labelNombreJuego.textContent = "Titulo:"
