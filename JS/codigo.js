@@ -30,12 +30,20 @@ document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSu
 document.getElementById("btnBuscaBiblioteca").addEventListener("click", bibliotecaBuscada);
 
 
+let arrayBotonesTienda = document.getElementsByName("btnMandarTienda");
+for(let i = 0; i<arrayBotonesTienda.length; i++){
+
+    arrayBotonesTienda[i].addEventListener("click", muestraTienda);
+
+}
 
 //--------------------------------------------------------------------------------------//
 
 
 //Llamada a la Función de Ocultar Formularios para que comiencen ocultos
 ocultarFormularios();
+cargarDatos();
+muestraInicio()
 
 //---------------------------CONTROL VISUAL UI--------------------------------------------//
 
