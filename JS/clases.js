@@ -272,9 +272,105 @@ class Tienda {
        document.body.appendChild(oDiv);
 
         }
-       // document.body.appendChild(oTabla);
-
     }
+       // document.body.appendChild(oTabla);
+    mostrarFormCompra(oEvento) {
+
+        ocultarFormularios();
+
+        //DEBE RECOGER EL EVENTO EN EL BOTON, ACTUALMENTE LO RECOGE DEL BODY
+        //AVERIGUAR COMO COGER LOS DATOS DEL JUEGO
+        //MIRAR CON ALVARO QUE EL BOTON SE DECLARA VARIAS VECES
+        let oE = oEvento || window.event;
+
+        console.log(oE);
+
+        let arrayJuego = _buscarJuegoId(oE.target.value);
+
+        console.log(arrayJuego);
+
+
+        let br = document.createElement("br");
+
+        let labelDNI = document.createElement("label");
+        labelDNI.textContent = "DNI";
+
+        let inputDNI = document.createElement("input");
+
+        let labelNombreJuego = document.createElement("label");
+        labelNombreJuego.textContent = "Titulo:"
+
+        let inputNombreJuego = document.createElement("input");
+        inputNombreJuego.value = arrayJuego["titulo"];
+        inputNombreJuego.setAttribute("readonly", "true");
+
+        let labelGeneroJuego = document.createElement("label");
+        labelGeneroJuego.textContent = "Genero:";
+
+        let inputGeneroJuego = document.createElement("input");
+        inputGeneroJuego.value = arrayJuego["genero"];
+        inputGeneroJuego.setAttribute("readonly", "true");
+
+        let labelPrecio = document.createElement("label");
+        labelPrecio.textContent = "Precio:";
+
+        let inputPrecio = document.createElement("input");
+        inputPrecio.value = arrayJuego["precio"];
+        inputPrecio.setAttribute("readonly", "true");
+
+
+        let btnComprarJuego = document.createElement("button");
+        btnComprarJuego.value = arrayJuego["id_juego"];
+        btnComprarJuego.textContent = "Comprar";
+        btnComprarJuego.addEventListener("click", this.comprarJuego);
+
+        let oTablaCompra = document.createElement("table");
+        var header = oTablaCompra.createTHead();
+        var row = header.insertRow(0);
+        var cell = row.insertCell(-1);
+        cell.setAttribute("colspan", "2");
+        cell.setAttribute("style", "text-align:center");
+        cell.textContent = "COMPRA";
+        var tbody = document.createElement("TBODY");
+        oTablaCompra.appendChild(tbody);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.appendChild(labelDNI);
+        cell = row.insertCell(-1);
+        cell.appendChild(inputDNI);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.appendChild(labelNombreJuego);
+        cell = row.insertCell(-1);
+        cell.appendChild(inputNombreJuego);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.appendChild(labelGeneroJuego);
+        cell = row.insertCell(-1);
+        cell.appendChild(inputGeneroJuego);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.appendChild(labelPrecio);
+        cell = row.insertCell(-1);
+        cell.appendChild(inputPrecio);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.setAttribute("colspan", "2");
+        cell.setAttribute("align", "center");
+        cell.appendChild(btnComprarJuego);
+
+        document.body.appendChild(oTablaCompra);
+
+
+            
+    }
+
+
+    // comprarJuego() {
+
+    // }
+
+
 }
 class Juego {
     constructor(id_juego, titulo, genero, año_lanzamiento, precio, pegi) {
