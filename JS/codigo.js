@@ -3,6 +3,16 @@
 var tienda = new Tienda();
 ocultarFormularios();
 cargarDatos();
+console.warn("Objeto global:");
+console.dir(tienda);
+console.warn("Array de clientes:");
+console.table(tienda.clientes);
+console.warn("Array de juegos:");
+console.table(tienda.juegos);
+console.warn("Array de compras:");
+console.table(tienda.compras);
+console.warn("Array de suscripciones:");
+console.table(tienda.suscripciones);
 //-------------------------EVENTSLISTENERS----------------------------------------------//
 //-----Botonones de navegacion superior-------------------
 document.getElementById("btnInicio").addEventListener("click", muestraInicio);
