@@ -254,16 +254,16 @@ function altaSuscriptor() {
         let iPosicion = tienda.suscripciones.length;
         var dFechaActual = new Date();
         let dFechaExpiracion = new Date();
-        
+
         dFechaExpiracion.setMonth(dFechaActual.getMonth() + 1);
 
-        
+
 
         let iIdCliente = buscaIdCliente(sNIF);
-         
+
         if (iIdCliente != 0) {
             let oSuscriptorNuevo = new Suscripcion(iPosicion + 1, parseInt(iIdCliente), dFechaExpiracion);
-          
+
 
             if (tienda.registrarSuscripcion(oSuscriptorNuevo, dFechaActual)) {
                 alert("Suscriptor dado de alta");
@@ -306,6 +306,7 @@ function bibliotecaBuscada() {
             if (suscripcion != null) {
 
                 tienda.listarJuegosDeCliente(null);
+                form.style.display = "none";
             } else {
                 var juegosComprados = _buscaJuegosCliente(id);
                 var idJuegosComprados = []
