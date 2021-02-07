@@ -68,36 +68,49 @@ class Tienda {
     listarJuegos() {
 
         ocultarFormularios();
-        
+
+
+
         var oTabla = document.createElement("table");
-        
+
         oTabla.setAttribute('border', '1');
         oTabla.id = "lista";
-       var header = oTabla.createTHead();
-       var row = header.insertRow(0);
-       var cell = row.insertCell(-1);
-       cell.textContent = "TITULO";
-       cell = row.insertCell(-1);
-       cell.textContent = "GENERO";
-       cell = row.insertCell(-1);
-       cell.textContent = "AÑO";
-       cell = row.insertCell(-1);
-       cell.textContent = "PRECIO";
-       cell = row.insertCell(-1);
-       cell.textContent = "PEGI";
-       cell = row.insertCell(-1);
-       cell.textContent = "Comprar ";
+        var header = oTabla.createTHead();
+        var row = header.insertRow(0);
+        var cell = row.insertCell(-1);
+        cell.textContent = "TITULO";
+        cell = row.insertCell(-1);
+        cell.textContent = "GENERO";
+        cell = row.insertCell(-1);
+        cell.textContent = "AÑO";
+        cell = row.insertCell(-1);
+        cell.textContent = "PRECIO";
+        cell = row.insertCell(-1);
+        cell.textContent = "PEGI";
+        cell = row.insertCell(-1);
+        cell.textContent = "Comprar ";
 
-       var tbody = document.createElement("TBODY");
-       oTabla.appendChild(tbody);
-       var btnCompra = document.createElement("button");
-        btnCompra.setAttribute('value','Comprar');
-        btnCompra.textContent = "Comprar";
-       for(var i = 0; i<this.juegos.length; i++){
-           
-             row = tbody.insertRow(-1);
-             var btnCompra = document.createElement("button");
-             btnCompra.textContent = "Comprar";
+        var tbody = document.createElement("TBODY");
+        oTabla.appendChild(tbody);
+
+        //var btnCompra = document.createElement("button");
+        //btnCompra = document.addEventListener("click", this.mostrarFormCompra);
+        //btnCompra.setAttribute('value', 'Comprar');
+        //btnCompra.textContent = "Comprar";
+
+        for (var i = 0; i < this.juegos.length; i++) {
+
+            row = tbody.insertRow(-1);
+
+
+            var btnCompra = document.createElement("button");
+
+
+
+            btnCompra.textContent = "Comprar";
+
+
+
             //let juegoIndividual = Object.values(this.juegos[i]);
 
             cell = row.insertCell(-1);
@@ -109,14 +122,116 @@ class Tienda {
             cell = row.insertCell(-1);
             cell.textContent = this.juegos[i]["precio"];
             cell = row.insertCell(-1);
-            cell.textContent = this.juegos[i]["pegi"];
+            cell.textContent = "+" + this.juegos[i]["pegi"];
             cell = row.insertCell(-1);
+            btnCompra.setAttribute("value", this.juegos[i]["id_juego"]);
+            btnCompra.addEventListener("click", this.mostrarFormCompra);
             cell.appendChild(btnCompra);
-           
-           
-       }
-       let divListado = document.getElementById("areaListado");
-       divListado.appendChild(oTabla);
+
+
+        }
+        let divListado = document.getElementById("areaListado");
+        divListado.appendChild(oTabla);
+
+        document.body.appendChild(oTabla);
+
+    }
+
+
+
+    mostrarFormCompra(oEvento) {
+
+        ocultarFormularios();
+
+        //DEBE RECOGER EL EVENTO EN EL BOTON, ACTUALMENTE LO RECOGE DEL BODY
+        //AVERIGUAR COMO COGER LOS DATOS DEL JUEGO
+        //MIRAR CON ALVARO QUE EL BOTON SE DECLARA VARIAS VECES
+        let oE = oEvento || window.event;
+
+        console.log(oE);
+
+        let arrayJuego = _buscarJuegoId(oE.target.value);
+
+        console.log(arrayJuego);
+
+
+        let br = document.createElement("br");
+
+        let labelDNI = document.createElement("label");
+        labelDNI.textContent = "DNI";
+
+        let inputDNI = document.createElement("input");
+
+        let labelNombreJuego = document.createElement("label");
+        labelNombreJuego.textContent = "Titulo:"
+
+        let inputNombreJuego = document.createElement("input");
+        inputNombreJuego.value = arrayJuego["titulo"];
+        inputNombreJuego.setAttribute("readonly", "true");
+
+        let labelGeneroJuego = document.createElement("label");
+        labelGeneroJuego.textContent = "Genero:";
+
+        let inputGeneroJuego = document.createElement("input");
+        inputGeneroJuego.value = arrayJuego["genero"];
+        inputGeneroJuego.setAttribute("readonly", "true");
+
+        let labelPrecio = document.createElement("label");
+        labelPrecio.textContent = "Precio:";
+
+        let inputPrecio = document.createElement("input");
+        inputPrecio.value = arrayJuego["precio"];
+        inputPrecio.setAttribute("readonly", "true");
+
+
+        let btnComprarJuego = document.createElement("button");
+        btnComprarJuego.value = arrayJuego["id_juego"];
+        btnComprarJuego.textContent = "Comprar";
+
+        let oTablaCompra = document.createElement("table");
+        var header = oTablaCompra.createTHead();
+        var row = header.insertRow(0);
+        var cell = row.insertCell(-1);
+        cell.setAttribute("colspan", "2");
+        cell.setAttribute("style", "text-align:center");
+        cell.textContent = "COMPRA";
+        var tbody = document.createElement("TBODY");
+        oTablaCompra.appendChild(tbody);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.appendChild(labelDNI);
+        cell = row.insertCell(-1);
+        cell.appendChild(inputDNI);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.appendChild(labelNombreJuego);
+        cell = row.insertCell(-1);
+        cell.appendChild(inputNombreJuego);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.appendChild(labelGeneroJuego);
+        cell = row.insertCell(-1);
+        cell.appendChild(inputGeneroJuego);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.appendChild(labelPrecio);
+        cell = row.insertCell(-1);
+        cell.appendChild(inputPrecio);
+        row = tbody.insertRow(-1);
+        cell = row.insertCell(-1);
+        cell.setAttribute("colspan", "2");
+        cell.setAttribute("align", "center");
+        cell.appendChild(btnComprarJuego);
+
+        document.body.appendChild(oTablaCompra);
+
+
+
+
+
+
+
+
 
     }
 }

@@ -71,9 +71,13 @@ function muestraFormAltaJuego() {
 //Función para Ocultar los Formularios y el Área de Listado
 function ocultarFormularios() {
 
-    let oTabla = document.getElementById("lista");
+    let oTabla = document.getElementsByTagName("table");
     if (oTabla != null) {
-        oTabla.remove();
+        for (let index = 0; index < oTabla.length; index++) {
+            oTabla[index].remove();
+
+        }
+
     }
 
     let arrayFormularios = document.getElementsByTagName("form");
@@ -187,7 +191,7 @@ function altaJuego() {
 
         console.log(dFechaCambiada);
 
-        let oJuego = new Juego(iPosicion + 1, sTitulo, sGenero, dFechaCambiada, iPrecio, iPegi);
+        let oJuego = new Juego(iPosicion + 1, sTitulo, sGenero, dFechaCambiada, parseFloat(iPrecio), parseInt(iPegi));
 
         if (tienda.registrarJuego(oJuego)) {
             alert("Juego dado de alta correctamente");
@@ -224,7 +228,7 @@ function altaSuscriptor() {
         let iIdCliente = buscaIdCliente(sNIF);
 
         if (iIdCliente != 0) {
-            let oSubcriptorNuevo = new Subscripcion(iPosicion, iIdCliente, dFechaExpiracion);
+            let oSubcriptorNuevo = new Subscripcion(iPosicion, parseInt(iIdCliente), dFechaExpiracion);
             console.log(oSubcriptorNuevo);
 
             if (tienda.registrarSubscripcion(oSubcriptorNuevo)) {
@@ -296,6 +300,16 @@ function buscaIdCliente(sNIF) {
     }
     return iIdDevuelto;
 }
+
+function _buscarJuegoId(id) {
+
+    let oJuegoADevolver = null;
+
+    oJuegoADevolver = tienda.juegos.find(oJuego => oJuego.id_juego == id);
+
+    return oJuegoADevolver;
+
+}
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
 //------------------------------AÑADIDO DE DATOS CON XML----------------------------------------------//
@@ -340,7 +354,7 @@ function cargarDatos() {
 
         let dFecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
 
-        var juego = new Juego(i + 1, titulo, genero, dFecha, parseFloat(precio), pegi);
+        var juego = new Juego(i + 1, titulo, genero, dFecha, parseFloat(precio), parseInt(pegi));
 
         tienda.registrarJuego(juego);
 
