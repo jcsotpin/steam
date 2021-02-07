@@ -51,11 +51,12 @@ class Tienda {
             return false;
         }
     }
-    registrarsuscripcion(suscripcion) {
+    registrarSuscripcion(suscripcion, fechaActual) {
 
             let oSuscripcionExistente = null;
+            
 
-            oSuscripcionExistente = _buscarSuscripcion(suscripcion.idCliente, suscripcion.fechaExp);
+            oSuscripcionExistente = _buscarSuscripcion(suscripcion.idCliente, fechaActual);
 
             if (oSuscripcionExistente == null) {
                 this.suscripciones.push(suscripcion);
@@ -301,7 +302,7 @@ class Tienda {
         var tbody = document.createElement("TBODY");
         oTabla.appendChild(tbody);
 
-        console.log(juegosComprados);
+       
         for (var i = 0; i < this.juegos.length; i++) {
 
             

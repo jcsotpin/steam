@@ -241,18 +241,20 @@ function altaSuscriptor() {
     } else {
 
         let iPosicion = tienda.suscripciones.length;
-        let dFechaActual = new Date();
+        var dFechaActual = new Date();
         let dFechaExpiracion = new Date();
+        
         dFechaExpiracion.setMonth(dFechaActual.getMonth() + 1);
 
+        
 
         let iIdCliente = buscaIdCliente(sNIF);
-
+         
         if (iIdCliente != 0) {
-            let oSubcriptorNuevo = new Suscripcion(iPosicion + 1, parseInt(iIdCliente), dFechaExpiracion);
-            console.log(oSubcriptorNuevo);
+            let oSuscriptorNuevo = new Suscripcion(iPosicion + 1, parseInt(iIdCliente), dFechaExpiracion);
+          
 
-            if (tienda.registrarsuscripcion(oSubcriptorNuevo)) {
+            if (tienda.registrarSuscripcion(oSuscriptorNuevo, dFechaActual)) {
                 alert("Suscriptor dado de alta");
                 limpiarInputs(inputs);
                 ocultarFormularios();
@@ -477,7 +479,7 @@ function cargarDatos() {
 
         var suscripcion = new Suscripcion(i + 1, parseInt(idCliente), fecha);
 
-        tienda.registrarsuscripcion(suscripcion);
+        tienda.registrarSuscripcion(suscripcion);
     }
 
     alert("Se han cargado los datos correctamente.");
