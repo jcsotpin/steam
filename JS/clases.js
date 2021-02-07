@@ -166,7 +166,7 @@ class Tienda {
         document.body.appendChild(oDiv);
 
     }
-    
+
     listarJuegosPorGenero(generoFiltrado) {
 
 
@@ -281,8 +281,8 @@ class Tienda {
 
             }
         }
-    //------------------------LISTAR JUEGOS DE CLIENTE ---------------------------------------------------------------------------------------------------------------------------//
-    listarJuegosDeCliente(juegosComprados){
+        //------------------------LISTAR JUEGOS DE CLIENTE ---------------------------------------------------------------------------------------------------------------------------//
+    listarJuegosDeCliente(juegosComprados) {
 
         var oTabla = document.createElement("table");
 
@@ -305,14 +305,14 @@ class Tienda {
        
         for (var i = 0; i < this.juegos.length; i++) {
 
-            
-            if(juegosComprados == null || juegosComprados.includes(this.juegos[i]["id_juego"])){
 
-                if(juegosComprados == null){
-                    var oDivSus= document.createElement("div");
+            if (juegosComprados == null || juegosComprados.includes(this.juegos[i]["id_juego"])) {
+
+                if (juegosComprados == null) {
+                    var oDivSus = document.createElement("div");
                     oDivSus.textContent = "El usuario está suscrito. Tiene acceso total a todos los juegos";
-                }else{
-                    var oDivSus= document.createElement("div");
+                } else {
+                    var oDivSus = document.createElement("div");
                     oDivSus.textContent = "El usuario no está suscrito.";
                 }
                 //Añado el juego
@@ -327,8 +327,8 @@ class Tienda {
                 cell = row.insertCell(-1);
                 cell.textContent = "+" + this.juegos[i]["pegi"];
             }
-            
-            
+
+
 
         }
         let oDiv = document.createElement("DIV");
@@ -338,7 +338,7 @@ class Tienda {
 
         document.body.appendChild(oDiv);
     }
-       
+
     mostrarFormCompra(oEvento) {
 
         ocultarFormularios();
@@ -450,7 +450,7 @@ class Tienda {
 
 
     }
-    
+
 
 }
 class Juego {

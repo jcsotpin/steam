@@ -1,2 +1,0 @@
-# steam
-aplicación de juegos
