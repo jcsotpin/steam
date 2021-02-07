@@ -187,6 +187,7 @@ class Tienda {
         let btnComprarJuego = document.createElement("button");
         btnComprarJuego.value = arrayJuego["id_juego"];
         btnComprarJuego.textContent = "Comprar";
+        btnComprarJuego.addEventListener("click", this.comprarJuego);
 
         let oTablaCompra = document.createElement("table");
         var header = oTablaCompra.createTHead();
@@ -227,13 +228,13 @@ class Tienda {
 
 
 
+    }
 
 
-
-
-
+    comprarJuego() {
 
     }
+
 }
 class Juego {
     constructor(id_juego, titulo, genero, año_lanzamiento, precio, pegi) {
