@@ -3,7 +3,7 @@ class Tienda {
     constructor() {
             this.juegos = [];
             this.clientes = [];
-            this.subscripciones = [];
+            this.suscripciones = [];
             this.compras = [];
         }
         //Función para añadir juegos
@@ -51,14 +51,14 @@ class Tienda {
             return false;
         }
     }
-    registrarSubscripcion(subscripcion) {
+    registrarsuscripcion(suscripcion) {
 
-            let oSubscripcionExistente = null;
+            let oSuscripcionExistente = null;
 
-            oSubscripcionExistente = _buscarSuscripcion(subscripcion.idCliente, subscripcion.fechaExp);
+            oSuscripcionExistente = _buscarSuscripcion(suscripcion.idCliente, suscripcion.fechaExp);
 
-            if (oSubscripcionExistente == null) {
-                this.subscripciones.push(subscripcion);
+            if (oSuscripcionExistente == null) {
+                this.suscripciones.push(suscripcion);
                 return true;
             } else {
                 return false;
@@ -163,7 +163,7 @@ class Tienda {
         document.body.appendChild(oDiv);
 
     }
-
+    
     listarJuegosPorGenero(generoFiltrado) {
 
 
@@ -275,7 +275,64 @@ class Tienda {
 
             }
         }
-        // document.body.appendChild(oTabla);
+    //------------------------LISTAR JUEGOS DE CLIENTE ---------------------------------------------------------------------------------------------------------------------------//
+    listarJuegosDeCliente(juegosComprados){
+
+        var oTabla = document.createElement("table");
+
+        oTabla.setAttribute('border', '1');
+        oTabla.id = "lista";
+        var header = oTabla.createTHead();
+        var row = header.insertRow(0);
+        var cell = row.insertCell(-1);
+        cell.textContent = "TITULO";
+        cell = row.insertCell(-1);
+        cell.textContent = "GENERO";
+        cell = row.insertCell(-1);
+        cell.textContent = "AÑO";
+        cell = row.insertCell(-1);
+        cell.textContent = "PEGI";
+
+        var tbody = document.createElement("TBODY");
+        oTabla.appendChild(tbody);
+
+        console.log(juegosComprados);
+        for (var i = 0; i < this.juegos.length; i++) {
+
+            
+            if(juegosComprados == null || juegosComprados.includes(this.juegos[i]["id_juego"])){
+
+                if(juegosComprados == null){
+                    var oDivSus= document.createElement("div");
+                    oDivSus.textContent = "El usuario está suscrito. Tiene acceso total a todos los juegos";
+                }else{
+                    var oDivSus= document.createElement("div");
+                    oDivSus.textContent = "El usuario no está suscrito.";
+                }
+                //Añado el juego
+                row = tbody.insertRow(-1);
+
+                cell = row.insertCell(-1);
+                cell.textContent = this.juegos[i]["titulo"];
+                cell = row.insertCell(-1);
+                cell.textContent = this.juegos[i]["genero"];
+                cell = row.insertCell(-1);
+                cell.textContent = this.juegos[i]["año_lanzamiento"].getFullYear();
+                cell = row.insertCell(-1);
+                cell.textContent = "+" + this.juegos[i]["pegi"];
+            }
+            
+            
+
+        }
+        let oDiv = document.createElement("DIV");
+        oDiv.setAttribute("id", "listadoJuegos");
+        oDiv.appendChild(oDivSus);
+        oDiv.appendChild(oTabla);
+
+        document.body.appendChild(oDiv);
+    }
+       
     mostrarFormCompra(oEvento) {
 
         ocultarFormularios();
@@ -366,7 +423,7 @@ class Tienda {
 
 
     }
-
+    
 
     // comprarJuego() {
 
@@ -558,21 +615,21 @@ Compra.prototype.toHTMLRow = function() {
     return sFila;
 }
 
-class Subscripcion {
+class Suscripcion {
 
-    constructor(sIdSubscripcion, sIdCliente, dFechaExp) {
+    constructor(sIdsuscripcion, sIdCliente, dFechaExp) {
 
-        this.idSubscripcion = sIdSubscripcion;
+        this.idsuscripcion = sIdsuscripcion;
         this.idCliente = sIdCliente;
         this.fechaExp = dFechaExp;
         this.precio = parseFloat("10,00");
     }
 }
 
-Subscripcion.prototype.toHTMLRow = function() {
+Suscripcion.prototype.toHTMLRow = function() {
 
     let sFila = "<tr>";
-    sFila += "<td>" + this.idSubscripcion + "</td>";
+    sFila += "<td>" + this.idsuscripcion + "</td>";
     sFila += "<td>" + this.idCliente + "</td>";
     sFila += "<td>" + this.fechaExp + "</td>";
     sFila += "<td>" + this.precio + "</td>";

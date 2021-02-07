@@ -16,6 +16,7 @@ document.getElementById("btnAltaJuego").addEventListener("click", muestraFormAlt
 document.getElementById("btnAceptarAltaPersona").addEventListener("click", altaUsuario);
 document.getElementById("btnAceptarAltaJuego").addEventListener("click", altaJuego);
 document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSuscriptor);
+document.getElementById("btnBuscaBiblioteca").addEventListener("click", bibliotecaBuscada);
 document.getElementById("btnCargarDatos").addEventListener("click", cargarDatos);
     
 
@@ -46,14 +47,10 @@ function muestraTienda() {
 function muestraBiblioteca() {
     ocultarFormularios();
 
+    document.getElementById("formBiblioteca").style.display = "block";
+
 
 }
-
-function muestraUsuario() {
-    ocultarFormularios();
-    document.getElementById("formUsuario").style.display = "block";
-}
-
 function muestraFormSuscriptor() {
 
     ocultarFormularios();
@@ -73,6 +70,8 @@ function muestraFormAltaJuego() {
 function ocultarFormularios() {
 
     let oTabla = document.getElementsByTagName("table");
+    if( document.querySelector("#listadoJuegos")!=null)
+    document.querySelector("#listadoJuegos").remove();
     if (oTabla != null) {
     //    oTabla.remove();
         // document.querySelector("label").remove();
@@ -218,14 +217,14 @@ function altaSuscriptor() {
     let form = document.getElementById("formAdministracionSuscriptor");
     let inputs = form.getElementsByTagName("input");
 
-    let sNIF = inputs[0];
+    let sNIF = inputs[0].value.trim();
 
-    let res = validarNIF();
+    let res = validarNIF(sNIF);
     if (res != "") {
         alert(res);
     } else {
 
-        let iPosicion = tienda.subscripciones.length;
+        let iPosicion = tienda.suscripciones.length;
         let dFechaActual = new Date();
         let dFechaExpiracion = new Date();
         dFechaExpiracion.setMonth(dFechaActual.getMonth() + 1);
@@ -234,15 +233,15 @@ function altaSuscriptor() {
         let iIdCliente = buscaIdCliente(sNIF);
 
         if (iIdCliente != 0) {
-            let oSubcriptorNuevo = new Subscripcion(iPosicion, parseInt(iIdCliente), dFechaExpiracion);
+            let oSubcriptorNuevo = new Suscripcion(iPosicion, parseInt(iIdCliente), dFechaExpiracion);
             console.log(oSubcriptorNuevo);
 
-            if (tienda.registrarSubscripcion(oSubcriptorNuevo)) {
-                alert("Subscriptor dado de alta");
+            if (tienda.registrarsuscripcion(oSubcriptorNuevo)) {
+                alert("Suscriptor dado de alta");
                 limpiarInputs(inputs);
                 ocultarFormularios();
             } else {
-                alert("Ya existe esa subscripción");
+                alert("Ya existe esa suscripción");
             }
         } else {
             alert("El cliente no existe para suscribirse");
@@ -252,6 +251,40 @@ function altaSuscriptor() {
 
 
 
+    }
+}
+
+function bibliotecaBuscada(){
+
+    
+    let form = document.getElementById("formBiblioteca");
+    let inputs = form.getElementsByTagName("input");
+    form.style.display = "none";
+    let sEmail = inputs[0].value.trim();
+
+    let res = validarEmail(sEmail);
+    if (res != "") {
+        alert(res);
+    } else {
+       
+        var cliente  =  _buscarCliente(sEmail);
+        var id = cliente["iId"];
+        var fechaActual = Date.now();
+        //Si el cliente es suscriptor añado todos los juegos
+
+        var suscripcion = _buscarSuscripcion(id, fechaActual);
+        //console.log(suscripcion);
+        if(suscripcion !=null){
+            
+            tienda.listarJuegosDeCliente(null);
+        }else{
+            var juegosComprados = _buscaJuegosCliente(id);
+            var idJuegosComprados = []
+            for(var i = 0; i<juegosComprados.length; i++){
+                idJuegosComprados.push(juegosComprados[i]["idJuego"]);
+            }
+            tienda.listarJuegosDeCliente(idJuegosComprados);
+        }
     }
 }
 
@@ -283,21 +316,21 @@ function _buscarCompra(idJuego, idCliente) {
     return oCompraExistente;
 }
 
-function _buscarSuscripcion(idCliente, fechaExp) {
+function _buscarSuscripcion(idCliente, fechaActual) {
 
-    let oSubscripcionExistente = null;
+    let oSuscripcionExistente = null;
 
     //Obtenemos la fecha de realización
     //TODO: fechaExp
-    oSubscripcionExistente = tienda.subscripciones.find(oSubscripcion => oSubscripcion.idCliente == idCliente && oSubscripcion.fechaExp > (fechaExp));
-    return oSubscripcionExistente;
+    oSuscripcionExistente = tienda.suscripciones.find(oSuscripcion => oSuscripcion.idCliente == idCliente && oSuscripcion.fechaExp > (fechaActual));
+    return oSuscripcionExistente;
 }
 
 function buscaIdCliente(sNIF) {
     let iIdDevuelto = 0;
-    console.log(sNIF);
+    //console.log(sNIF);
     for (let index = 0; index < tienda.clientes.length; index++) {
-        console.log(tienda.clientes[index]);
+        //console.log(tienda.clientes[index]);
         if (tienda.clientes[index].sNIF == sNIF) {
 
             iIdDevuelto = tienda.clientes[index].iId;
@@ -315,6 +348,14 @@ function _buscarJuegoId(id) {
 
     return oJuegoADevolver;
 
+}
+function _buscaJuegosCliente(id){
+
+    let oComprasExistentes = [];
+
+    oComprasExistentes = tienda.compras.filter(oCompras => oCompras.idCliente == id);
+
+    return oComprasExistentes;
 }
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
@@ -341,7 +382,7 @@ function cargarDatos() {
     var oJuegos = oXML.getElementsByTagName("juego");
     var oClientes = oXML.getElementsByTagName("cliente");
     var oCompras = oXML.getElementsByTagName("compra");
-    var oSubscripciones = oXML.getElementsByTagName("subscripcion");
+    var oSuscripciones = oXML.getElementsByTagName("suscripcion");
 
 
 
@@ -403,17 +444,17 @@ function cargarDatos() {
         tienda.registrarCompra(compra);
     }
 
-    for (var i = 0; i < oSubscripciones.length; i++) {
-        var idCliente = oSubscripciones[i].getElementsByTagName("id")[0].textContent;
-        var fechaExp = oSubscripciones[i].getElementsByTagName("fechaExpiracion")[0].textContent;
+    for (var i = 0; i < oSuscripciones.length; i++) {
+        var idCliente = oSuscripciones[i].getElementsByTagName("id")[0].textContent;
+        var fechaExp = oSuscripciones[i].getElementsByTagName("fechaExpiracion")[0].textContent;
 
         let arrayFecha = fechaExp.split("/");
 
         let fecha = new Date(arrayFecha[0], arrayFecha[1] - 1, arrayFecha[2]);
 
-        var subscripcion = new Subscripcion(i + 1, parseInt(idCliente), fecha);
+        var suscripcion = new Suscripcion(i + 1, parseInt(idCliente), fecha);
 
-        tienda.registrarSubscripcion(subscripcion);
+        tienda.registrarsuscripcion(suscripcion);
     }
 
     alert("Se han cargado los datos correctamente.");

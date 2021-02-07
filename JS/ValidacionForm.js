@@ -169,9 +169,9 @@ function validaExpRegJuego() {
     return sErrores;
 }
 
-function validarNIF(){
+function validarNIF(nif){
     //Validar NIF
-    let sNIF = document.getElementById("txtNIF").value.trim();
+    let sNIF = nif;
     let bValido = true;
     let sErrores = "";
 
@@ -185,6 +185,26 @@ function validarNIF(){
     }
     else{
         document.getElementById("txtNIF").classList.remove("error");
+    }
+    return sErrores
+}
+function validarEmail(email){
+
+    let sEmail = email;
+    let bValido = true;
+    let sErrores = "";
+
+    if (!expRegEmail.test(sEmail)) {
+
+        if(bValido){
+            document.getElementById("txtEmail").focus();
+            bValido = false;
+        }
+        sErrores += "\nEl Email no tiene el formato correcto";
+        document.getElementById("txtEmail").classList.add("error");
+    }
+    else{
+        document.getElementById("txtEmail").classList.remove("error");
     }
     return sErrores
 }
