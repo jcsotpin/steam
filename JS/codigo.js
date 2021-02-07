@@ -508,7 +508,7 @@ function cargarDatos() {
         tienda.registrarSuscripcion(suscripcion);
     }
 
-    alert("Se han cargado los datos correctamente.");
+    //alert("Se han cargado los datos correctamente.");
 }
 
 function filtraGenero() {
