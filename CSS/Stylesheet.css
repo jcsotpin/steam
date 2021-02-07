@@ -3,54 +3,39 @@
     max-width: 50px;
 }
 
-/* Este es nuestro diseño para los campos no válidos */
-input:invalid{
-    border-color: #900;
-    background-color: #FDD;
-  }
-
-  input:focus:invalid {
-    outline: none;
-  }
-
-  /* Este es el diseño para nuestros mensajes de error */
-  .error {
-    width : 100%;
-    padding: 0;
-
-    font-size: 80%;
-    color: white;
-    background-color: #900;
-    border-radius: 0 0 5px 5px;
-
-    box-sizing: border-box;
-  }
-
-  .error.active {
-  padding: 0.3em;
-  }
-
-
-  table {
-    font-size: 13px;
-    font-weight:bold;
+/*Estilo de la Tabla*/
+table {
+  font-size: 13px;
+  font-weight:bold;
+  color: #c7d5e0;
+  font-family: “Trebuchet MS”, Arial;
+  text-align:left;
+}
    
-    background-repeat: repeat-x;
-    color: #c7d5e0;
-    font-family: “Trebuchet MS”, Arial;
-    text-align:left;
-    }
-    table td {
-    padding: 5px;
-    background-color: #2a475e;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-right-color: #000000;
-    border-bottom-color: #000000;
-    }
-   
-    tr:hover td { background: #66c0f4; color: #339; }
+tr:hover td {
+  background: #66c0f4; color: #339; 
+}
 
+thead{
+  background-color: #0f2231;
+}
 
+table thead tr td{
+  padding: 10px; 
+}
+
+table tbody tr td{
+   padding: 10px; 
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #2a5b83;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #447faf;
+}
+
+button{
+  background-color: #0f2231;
+}

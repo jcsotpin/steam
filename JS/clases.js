@@ -115,7 +115,8 @@ class Tienda {
            
            
        }
-       document.body.appendChild(oTabla);
+       let divListado = document.getElementById("areaListado");
+       divListado.appendChild(oTabla);
 
     }
 }
