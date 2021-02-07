@@ -1,7 +1,18 @@
 "use strict";
 //Creamos el objeto tienda para añadirle datos posteriormente
 var tienda = new Tienda();
-
+ocultarFormularios();
+cargarDatos();
+console.warn("Objeto global:");
+console.dir(tienda);
+console.warn("Array de clientes:");
+console.table(tienda.clientes);
+console.warn("Array de juegos:");
+console.table(tienda.juegos);
+console.warn("Array de compras:");
+console.table(tienda.compras);
+console.warn("Array de suscripciones:");
+console.table(tienda.suscripciones);
 //-------------------------EVENTSLISTENERS----------------------------------------------//
 //-----Botonones de navegacion superior-------------------
 document.getElementById("btnInicio").addEventListener("click", muestraInicio);
@@ -17,7 +28,7 @@ document.getElementById("btnAceptarAltaPersona").addEventListener("click", altaU
 document.getElementById("btnAceptarAltaJuego").addEventListener("click", altaJuego);
 document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSuscriptor);
 document.getElementById("btnBuscaBiblioteca").addEventListener("click", bibliotecaBuscada);
-document.getElementById("btnCargarDatos").addEventListener("click", cargarDatos);
+
 
 
 //--------------------------------------------------------------------------------------//
@@ -52,6 +63,7 @@ function muestraBiblioteca() {
 
 
 }
+
 function muestraFormSuscriptor() {
 
     ocultarFormularios();
@@ -73,8 +85,8 @@ function ocultarFormularios() {
 
     //Oculta las tablas
     let oTabla = document.getElementsByTagName("table");
-    if( document.querySelector("#listadoJuegos")!=null)
-    document.querySelector("#listadoJuegos").remove();
+    if (document.querySelector("#listadoJuegos") != null)
+        document.querySelector("#listadoJuegos").remove();
     if (oTabla != null) {
         //    oTabla.remove();
         // document.querySelector("label").remove();
@@ -269,37 +281,42 @@ function altaSuscriptor() {
     }
 }
 
-function bibliotecaBuscada(){
+function bibliotecaBuscada() {
 
-    
+
     let form = document.getElementById("formBiblioteca");
     let inputs = form.getElementsByTagName("input");
-    form.style.display = "none";
     let sEmail = inputs[0].value.trim();
 
     let res = validarEmail(sEmail);
     if (res != "") {
         alert(res);
     } else {
-       
-        var cliente  =  _buscarCliente(sEmail);
-        var id = cliente["iId"];
-        var fechaActual = Date.now();
-        //Si el cliente es suscriptor añado todos los juegos
 
-        var suscripcion = _buscarSuscripcion(id, fechaActual);
-        //console.log(suscripcion);
-        if(suscripcion !=null){
-            
-            tienda.listarJuegosDeCliente(null);
-        }else{
-            var juegosComprados = _buscaJuegosCliente(id);
-            var idJuegosComprados = []
-            for(var i = 0; i<juegosComprados.length; i++){
-                idJuegosComprados.push(juegosComprados[i]["idJuego"]);
+        var cliente = _buscarCliente(sEmail);
+        if (cliente != null) {
+            var id = cliente["iId"];
+            var fechaActual = Date.now();
+            //Si el cliente es suscriptor añado todos los juegos
+
+            var suscripcion = _buscarSuscripcion(id, fechaActual);
+            //console.log(suscripcion);
+            if (suscripcion != null) {
+
+                tienda.listarJuegosDeCliente(null);
+            } else {
+                var juegosComprados = _buscaJuegosCliente(id);
+                var idJuegosComprados = []
+                for (var i = 0; i < juegosComprados.length; i++) {
+                    idJuegosComprados.push(juegosComprados[i]["idJuego"]);
+                }
+                form.style.display = "none";
+                tienda.listarJuegosDeCliente(idJuegosComprados);
             }
-            tienda.listarJuegosDeCliente(idJuegosComprados);
+        } else {
+            alert("El cliente no existe");
         }
+
     }
 }
 
@@ -364,7 +381,8 @@ function _buscarJuegoId(id) {
     return oJuegoADevolver;
 
 }
-function _buscaJuegosCliente(id){
+
+function _buscaJuegosCliente(id) {
 
     let oComprasExistentes = [];
 
@@ -372,6 +390,7 @@ function _buscaJuegosCliente(id){
 
     return oComprasExistentes;
 }
+
 function recogeNumCompras() {
     return tienda.compras.length;
 }
@@ -382,6 +401,7 @@ function introduceCompra(oCompra) {
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
 //------------------------------AÑADIDO DE DATOS CON XML----------------------------------------------//
+
 
 function loadXMLDoc(filename) {
     if (window.XMLHttpRequest) {
