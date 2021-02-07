@@ -56,6 +56,18 @@ input:focus:invalid {
 }
 
 input:read-only {
-    background-color: gray;
+    background-color: rgb(0, 0, 0);
     color: whitesmoke;
 }
+
+/*Estilo Select*/
+select,button{
+    background-color: #2a5b83;
+    color: whitesmoke;
+}
+option{
+    color: whitesmoke;
+}
+
+/*Estilo Index*/
+
