@@ -152,7 +152,7 @@ class Tienda {
             cell.textContent = "+" + this.juegos[i]["pegi"];
             cell = row.insertCell(-1);
             btnCompra.setAttribute("value", this.juegos[i]["id_juego"]);
-            btnCompra.addEventListener("click", this.mostrarFormCompra);
+            btnCompra.addEventListener("click", this.listarDatosCompra);
             cell.appendChild(btnCompra);
 
         }
@@ -266,7 +266,7 @@ class Tienda {
                         cell.textContent = this.juegos[i]["pegi"];
                         cell = row.insertCell(-1);
                         btnCompra.setAttribute("value", this.juegos[i]["id_juego"]);
-                        btnCompra.addEventListener("click", this.mostrarFormCompra);
+                        btnCompra.addEventListener("click", this.listarDatosCompra);
                         cell.appendChild(btnCompra);
                     }
                 }
@@ -339,7 +339,7 @@ class Tienda {
         document.body.appendChild(oDiv);
     }
 
-    mostrarFormCompra(oEvento) {
+    listarDatosCompra(oEvento) {
 
         ocultarFormularios();
 
