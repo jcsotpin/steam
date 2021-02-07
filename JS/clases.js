@@ -105,7 +105,9 @@ class Tienda {
         oBtnFiltra.setAttribute("value", "Filtra");
         oBtnFiltra.setAttribute("id", "btnFiltra");
         oBtnFiltra.style.marginLeft = "0.5em";
-        oBtnFiltra.addEventListener("click", filtraGenero);
+        // oBtnFiltra.addEventListener("click", filtraGenero);
+        oCombo.addEventListener("change", filtraGenero);
+
 
         var oTabla = document.createElement("table");
 
@@ -164,6 +166,7 @@ class Tienda {
 
     }
 
+
     listarJuegosPorGenero(generoFiltrado) {
 
 
@@ -217,7 +220,8 @@ class Tienda {
                 oBtnFiltra.setAttribute("value", "Filtra");
                 oBtnFiltra.setAttribute("id", "btnFiltra");
                 oBtnFiltra.style.marginLeft = "0.5em";
-                oBtnFiltra.addEventListener("click", filtraGenero);
+                //oBtnFiltra.addEventListener("click", filtraGenero);
+                oCombo.addEventListener("change", filtraGenero);
 
                 var oTabla = document.createElement("table");
 
@@ -296,10 +300,11 @@ class Tienda {
 
         let br = document.createElement("br");
 
-        let labelDNI = document.createElement("label");
-        labelDNI.textContent = "DNI";
+        let labelEmail = document.createElement("label");
+        labelEmail.textContent = "EMAIL";
 
-        let inputDNI = document.createElement("input");
+        let inputEmail = document.createElement("input");
+        inputEmail.placeholder = "EMAIL";
 
         let labelNombreJuego = document.createElement("label");
         labelNombreJuego.textContent = "Titulo:"
@@ -326,7 +331,27 @@ class Tienda {
         let btnComprarJuego = document.createElement("button");
         btnComprarJuego.value = arrayJuego["id_juego"];
         btnComprarJuego.textContent = "Comprar";
-        btnComprarJuego.addEventListener("click", this.comprarJuego);
+        btnComprarJuego.addEventListener("click", function() {
+
+            let sEmail = inputEmail.value;
+            let oCliente = _buscarCliente(sEmail);
+            let iNumCompras = recogeNumCompras();
+            if (oCliente != null) {
+
+                let oCompra = new Compra(iNumCompras + 1, oCliente["iId"], arrayJuego["id_juego"], new Date(), arrayJuego["precio"]);
+                introduceCompra(oCompra);
+                alert("Compra Realziada Correctamente");
+                ocultarFormularios();
+            } else {
+                alert("El cliente no existe");
+            }
+
+        });
+
+
+
+
+
 
         let oTablaCompra = document.createElement("table");
         var header = oTablaCompra.createTHead();
@@ -339,9 +364,9 @@ class Tienda {
         oTablaCompra.appendChild(tbody);
         row = tbody.insertRow(-1);
         cell = row.insertCell(-1);
-        cell.appendChild(labelDNI);
+        cell.appendChild(labelEmail);
         cell = row.insertCell(-1);
-        cell.appendChild(inputDNI);
+        cell.appendChild(inputEmail);
         row = tbody.insertRow(-1);
         cell = row.insertCell(-1);
         cell.appendChild(labelNombreJuego);
@@ -368,11 +393,6 @@ class Tienda {
 
 
     }
-
-
-    // comprarJuego() {
-
-    // }
 
 
 }

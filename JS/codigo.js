@@ -225,7 +225,7 @@ function altaSuscriptor() {
     let form = document.getElementById("formAdministracionSuscriptor");
     let inputs = form.getElementsByTagName("input");
 
-    let sNIF = inputs[0];
+    let sNIF = inputs[0].value;
 
     let res = validarNIF();
     if (res != "") {
@@ -241,7 +241,7 @@ function altaSuscriptor() {
         let iIdCliente = buscaIdCliente(sNIF);
 
         if (iIdCliente != 0) {
-            let oSubcriptorNuevo = new Subscripcion(iPosicion, parseInt(iIdCliente), dFechaExpiracion);
+            let oSubcriptorNuevo = new Subscripcion(iPosicion + 1, parseInt(iIdCliente), dFechaExpiracion);
             console.log(oSubcriptorNuevo);
 
             if (tienda.registrarSubscripcion(oSubcriptorNuevo)) {
@@ -322,6 +322,14 @@ function _buscarJuegoId(id) {
 
     return oJuegoADevolver;
 
+}
+
+function recogeNumCompras() {
+    return tienda.compras.length;
+}
+
+function introduceCompra(oCompra) {
+    tienda.compras.push(oCompra);
 }
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
@@ -432,6 +440,10 @@ function filtraGenero() {
 
     tienda.listarJuegosPorGenero(genero);
 
+}
+
+function pruebaChange() {
+    alert("AKSNDIASND");
 }
 
 
