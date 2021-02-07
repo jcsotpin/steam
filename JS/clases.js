@@ -98,13 +98,13 @@ class Tienda {
         }
         //Creo boton filtrar
 
-        var oBtnFiltra = document.createElement("INPUT");
-        oBtnFiltra.classList.add("btn");
-        oBtnFiltra.classList.add("btn-primary");
-        oBtnFiltra.setAttribute("type", "button");
-        oBtnFiltra.setAttribute("value", "Filtra");
-        oBtnFiltra.setAttribute("id", "btnFiltra");
-        oBtnFiltra.style.marginLeft = "0.5em";
+        /*  var oBtnFiltra = document.createElement("INPUT");
+         oBtnFiltra.classList.add("btn");
+         oBtnFiltra.classList.add("btn-primary");
+         oBtnFiltra.setAttribute("type", "button");
+         oBtnFiltra.setAttribute("value", "Filtra");
+         oBtnFiltra.setAttribute("id", "btnFiltra");
+         oBtnFiltra.style.marginLeft = "0.5em"; */
         // oBtnFiltra.addEventListener("click", filtraGenero);
         oCombo.addEventListener("change", filtraGenero);
 
@@ -159,7 +159,7 @@ class Tienda {
         oDiv.setAttribute("id", "listadoJuegos");
         oDiv.appendChild(oLabel);
         oDiv.appendChild(oCombo);
-        oDiv.appendChild(oBtnFiltra);
+        // oDiv.appendChild(oBtnFiltra);
         oDiv.appendChild(oTabla);
 
         document.body.appendChild(oDiv);
@@ -213,13 +213,13 @@ class Tienda {
                 }
                 //Creo boton filtrar
 
-                var oBtnFiltra = document.createElement("INPUT");
+                /* var oBtnFiltra = document.createElement("INPUT");
                 oBtnFiltra.classList.add("btn");
                 oBtnFiltra.classList.add("btn-primary");
                 oBtnFiltra.setAttribute("type", "button");
                 oBtnFiltra.setAttribute("value", "Filtra");
                 oBtnFiltra.setAttribute("id", "btnFiltra");
-                oBtnFiltra.style.marginLeft = "0.5em";
+                oBtnFiltra.style.marginLeft = "0.5em"; */
                 //oBtnFiltra.addEventListener("click", filtraGenero);
                 oCombo.addEventListener("change", filtraGenero);
 
@@ -274,7 +274,7 @@ class Tienda {
                 oDiv.setAttribute("id", "listadoJuegos");
                 oDiv.appendChild(oLabel);
                 oDiv.appendChild(oCombo);
-                oDiv.appendChild(oBtnFiltra);
+                //  oDiv.appendChild(oBtnFiltra);
                 oDiv.appendChild(oTabla);
 
                 document.body.appendChild(oDiv);
