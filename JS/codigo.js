@@ -385,7 +385,7 @@ function recogeNumCompras() {
 }
 
 function introduceCompra(oCompra) {
-    tienda.compras.push(oCompra);
+    tienda.registrarCompra(oCompra);
 }
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
