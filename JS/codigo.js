@@ -1,7 +1,8 @@
 "use strict";
 //Creamos el objeto tienda para añadirle datos posteriormente
 var tienda = new Tienda();
-
+ocultarFormularios();
+cargarDatos();
 //-------------------------EVENTSLISTENERS----------------------------------------------//
 //-----Botonones de navegacion superior-------------------
 document.getElementById("btnInicio").addEventListener("click", muestraInicio);
@@ -17,7 +18,7 @@ document.getElementById("btnAceptarAltaPersona").addEventListener("click", altaU
 document.getElementById("btnAceptarAltaJuego").addEventListener("click", altaJuego);
 document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSuscriptor);
 document.getElementById("btnBuscaBiblioteca").addEventListener("click", bibliotecaBuscada);
-document.getElementById("btnCargarDatos").addEventListener("click", cargarDatos);
+
 
 
 //--------------------------------------------------------------------------------------//
