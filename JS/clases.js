@@ -261,6 +261,8 @@ class Tienda {
                         cell = row.insertCell(-1);
                         cell.textContent = this.juegos[i]["pegi"];
                         cell = row.insertCell(-1);
+                        btnCompra.setAttribute("value", this.juegos[i]["id_juego"]);
+                        btnCompra.addEventListener("click", this.mostrarFormCompra);
                         cell.appendChild(btnCompra);
                     }
                 }

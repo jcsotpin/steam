@@ -17,7 +17,7 @@ document.getElementById("btnAceptarAltaPersona").addEventListener("click", altaU
 document.getElementById("btnAceptarAltaJuego").addEventListener("click", altaJuego);
 document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSuscriptor);
 document.getElementById("btnCargarDatos").addEventListener("click", cargarDatos);
-    
+
 
 //--------------------------------------------------------------------------------------//
 
@@ -74,17 +74,24 @@ function ocultarFormularios() {
 
     let oTabla = document.getElementsByTagName("table");
     if (oTabla != null) {
-    //    oTabla.remove();
+        //    oTabla.remove();
         // document.querySelector("label").remove();
         // document.querySelector("#comboBoxGenero").remove();
-        
+
         for (let index = 0; index < oTabla.length; index++) {
             oTabla[index].remove();
 
         }
 
     }
-    
+
+
+    let oDiv = document.querySelector("#listadoJuegos");
+    if (oDiv != null) {
+        oDiv.remove();
+    }
+
+
 
     let arrayFormularios = document.getElementsByTagName("form");
 
@@ -419,12 +426,12 @@ function cargarDatos() {
     alert("Se han cargado los datos correctamente.");
 }
 
-function filtraGenero(){
-   
+function filtraGenero() {
+
     let genero = document.querySelector("#comboBoxGenero").value;
 
     tienda.listarJuegosPorGenero(genero);
-    
+
 }
 
 
