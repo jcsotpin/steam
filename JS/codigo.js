@@ -17,6 +17,7 @@ document.getElementById("btnAceptarAltaPersona").addEventListener("click", altaU
 document.getElementById("btnAceptarAltaJuego").addEventListener("click", altaJuego);
 document.getElementById("btnDarAltaSuscriptor").addEventListener("click", altaSuscriptor);
 document.getElementById("btnCargarDatos").addEventListener("click", cargarDatos);
+    
 
 //--------------------------------------------------------------------------------------//
 
@@ -74,7 +75,11 @@ function ocultarFormularios() {
     let oTabla = document.getElementById("lista");
     if (oTabla != null) {
         oTabla.remove();
+        document.querySelector("label").remove();
+        document.querySelector("#comboBoxGenero").remove();
+        
     }
+    
 
     let arrayFormularios = document.getElementsByTagName("form");
 
@@ -296,6 +301,8 @@ function buscaIdCliente(sNIF) {
     }
     return iIdDevuelto;
 }
+
+
 //------------------------------FIN METODOS AUXILIARES-----------------------------------------------//
 
 //------------------------------AÑADIDO DE DATOS CON XML----------------------------------------------//
@@ -397,6 +404,14 @@ function cargarDatos() {
     }
 
     alert("Se han cargado los datos correctamente.");
+}
+
+function filtraGenero(){
+   
+    let genero = document.querySelector("#comboBoxGenero").value;
+
+    tienda.listarJuegosPorGenero(genero);
+    
 }
 
 

@@ -69,6 +69,44 @@ class Tienda {
 
         ocultarFormularios();
         
+
+        var oLabel = document.createElement("LABEL");
+        oLabel.textContent = "Filtre por género: ";
+        var oCombo = document.createElement("SELECT");
+        oCombo.classList.add("browser-default");
+        oCombo.classList.add("custom-select");
+        oCombo.setAttribute("id", "comboBoxGenero");
+        var oOption = document.createElement("OPTION");
+        oOption.setAttribute("selected", "");
+        oOption.textContent = "CUALQUIERA";
+        oCombo.appendChild(oOption);
+        var generos = [];
+        for(let i = 0; i<this.juegos.length; i++){
+
+            if(!generos.includes(this.juegos[i]["genero"])){
+
+                oOption = document.createElement("OPTION");
+            
+                oOption.setAttribute("value", this.juegos[i]["genero"]);
+                oOption.textContent = this.juegos[i]["genero"];
+                oCombo.appendChild(oOption);
+
+                generos.push(this.juegos[i]["genero"]);
+
+            }
+            
+        }
+        //Creo boton filtrar
+        
+        var oBtnFiltra = document.createElement("INPUT");
+        oBtnFiltra.classList.add("btn");
+        oBtnFiltra.classList.add("btn-primary");
+        oBtnFiltra.setAttribute("type", "button");
+        oBtnFiltra.setAttribute("value", "Filtra");
+        oBtnFiltra.setAttribute("id", "btnFiltra");
+        oBtnFiltra.style.marginLeft="0.5em";
+        oBtnFiltra.addEventListener("click", filtraGenero);
+
         var oTabla = document.createElement("table");
         
         oTabla.setAttribute('border', '1');
@@ -90,32 +128,150 @@ class Tienda {
 
        var tbody = document.createElement("TBODY");
        oTabla.appendChild(tbody);
-       var btnCompra = document.createElement("button");
-        btnCompra.setAttribute('value','Comprar');
-        btnCompra.textContent = "Comprar";
+    
        for(var i = 0; i<this.juegos.length; i++){
-           
-             row = tbody.insertRow(-1);
-             var btnCompra = document.createElement("button");
-             btnCompra.textContent = "Comprar";
-            //let juegoIndividual = Object.values(this.juegos[i]);
+           //Filtramos por el genero
+            
+                row = tbody.insertRow(-1);
+               var btnCompra = document.createElement("button");
+                btnCompra.textContent = "Comprar";
+                //let juegoIndividual = Object.values(this.juegos[i]);
 
-            cell = row.insertCell(-1);
-            cell.textContent = this.juegos[i]["titulo"];
-            cell = row.insertCell(-1);
-            cell.textContent = this.juegos[i]["genero"];
-            cell = row.insertCell(-1);
-            cell.textContent = this.juegos[i]["año_lanzamiento"].getFullYear();
-            cell = row.insertCell(-1);
-            cell.textContent = this.juegos[i]["precio"];
-            cell = row.insertCell(-1);
-            cell.textContent = this.juegos[i]["pegi"];
-            cell = row.insertCell(-1);
-            cell.appendChild(btnCompra);
-           
+                cell = row.insertCell(-1);
+                cell.textContent = this.juegos[i]["titulo"];
+                cell = row.insertCell(-1);
+                cell.textContent = this.juegos[i]["genero"];
+                cell = row.insertCell(-1);
+                cell.textContent = this.juegos[i]["año_lanzamiento"].getFullYear();
+                cell = row.insertCell(-1);
+                cell.textContent = this.juegos[i]["precio"];
+                cell = row.insertCell(-1);
+                cell.textContent = this.juegos[i]["pegi"];
+                cell = row.insertCell(-1);
+                cell.appendChild(btnCompra); 
            
        }
-       document.body.appendChild(oTabla);
+       let oDiv = document.createElement("DIV");
+       oDiv.setAttribute("id", "listadoJuegos");
+       oDiv.appendChild(oLabel);
+       oDiv.appendChild(oCombo);
+       oDiv.appendChild(oBtnFiltra);
+       oDiv.appendChild(oTabla);
+
+       document.body.appendChild(oDiv);
+
+    }
+
+    listarJuegosPorGenero(generoFiltrado){
+
+
+        //Elimino todos los juegos
+        document.querySelector("#listadoJuegos").remove();
+        
+
+        if(generoFiltrado == "CUALQUIERA"){
+            tienda.listarJuegos();
+        }else{
+
+            var oLabel = document.createElement("LABEL");
+        oLabel.textContent = "Filtre por género: ";
+        var oCombo = document.createElement("SELECT");
+        oCombo.classList.add("browser-default");
+        oCombo.classList.add("custom-select");
+        oCombo.setAttribute("id", "comboBoxGenero");
+        var oOption = document.createElement("OPTION");
+        
+        oOption.textContent = "CUALQUIERA";
+        oCombo.appendChild(oOption);
+        
+        
+        var generos = [];
+        for(let i = 0; i<this.juegos.length; i++){
+            
+            
+            if(!generos.includes(this.juegos[i]["genero"])){
+
+                
+                oOption = document.createElement("OPTION");
+            
+                oOption.setAttribute("value", this.juegos[i]["genero"]);
+                oOption.textContent = this.juegos[i]["genero"];
+                if(generoFiltrado == this.juegos[i]["genero"]){
+                    oOption.setAttribute("selected", "");
+                }
+                oCombo.appendChild(oOption);
+
+                generos.push(this.juegos[i]["genero"]);
+
+            }
+        }
+        //Creo boton filtrar
+        
+        var oBtnFiltra = document.createElement("INPUT");
+        oBtnFiltra.classList.add("btn");
+        oBtnFiltra.classList.add("btn-primary");
+        oBtnFiltra.setAttribute("type", "button");
+        oBtnFiltra.setAttribute("value", "Filtra");
+        oBtnFiltra.setAttribute("id", "btnFiltra");
+        oBtnFiltra.style.marginLeft="0.5em";
+        oBtnFiltra.addEventListener("click", filtraGenero);
+
+        var oTabla = document.createElement("table");
+        
+        oTabla.setAttribute('border', '1');
+        oTabla.id = "lista";
+       var header = oTabla.createTHead();
+       var row = header.insertRow(0);
+       var cell = row.insertCell(-1);
+       cell.textContent = "TITULO";
+       cell = row.insertCell(-1);
+       cell.textContent = "GENERO";
+       cell = row.insertCell(-1);
+       cell.textContent = "AÑO";
+       cell = row.insertCell(-1);
+       cell.textContent = "PRECIO";
+       cell = row.insertCell(-1);
+       cell.textContent = "PEGI";
+       cell = row.insertCell(-1);
+       cell.textContent = "Comprar ";
+
+       var tbody = document.createElement("TBODY");
+       oTabla.appendChild(tbody);
+    
+       for(var i = 0; i<this.juegos.length; i++){
+           //Filtramos por el genero
+            if(generoFiltrado == this.juegos[i]["genero"]){
+
+                row = tbody.insertRow(-1);
+                var btnCompra = document.createElement("button");
+                 btnCompra.textContent = "Comprar";
+                 //let juegoIndividual = Object.values(this.juegos[i]);
+ 
+                 cell = row.insertCell(-1);
+                 cell.textContent = this.juegos[i]["titulo"];
+                 cell = row.insertCell(-1);
+                 cell.textContent = this.juegos[i]["genero"];
+                 cell = row.insertCell(-1);
+                 cell.textContent = this.juegos[i]["año_lanzamiento"].getFullYear();
+                 cell = row.insertCell(-1);
+                 cell.textContent = this.juegos[i]["precio"];
+                 cell = row.insertCell(-1);
+                 cell.textContent = this.juegos[i]["pegi"];
+                 cell = row.insertCell(-1);
+                 cell.appendChild(btnCompra); 
+            }   
+       }
+       let oDiv = document.createElement("DIV");
+       oDiv.setAttribute("id", "listadoJuegos");
+       oDiv.appendChild(oLabel);
+       oDiv.appendChild(oCombo);
+       oDiv.appendChild(oBtnFiltra);
+       oDiv.appendChild(oTabla);
+
+       document.body.appendChild(oDiv);
+
+        }
+       // document.body.appendChild(oTabla);
 
     }
 }
