@@ -34,6 +34,7 @@ ocultarFormularios();
 function muestraInicio() {
 
     ocultarFormularios();
+    document.getElementById("main").style.display = "block";
 }
 
 function muestraTienda() {
@@ -72,6 +73,8 @@ function muestraFormAltaJuego() {
 //Función para Ocultar los Formularios y el Área de Listado
 function ocultarFormularios() {
 
+
+    //Oculta las tablas
     let oTabla = document.getElementsByTagName("table");
     if (oTabla != null) {
         //    oTabla.remove();
@@ -86,10 +89,15 @@ function ocultarFormularios() {
     }
 
 
+    //Oculta el div con el comboBox
     let oDiv = document.querySelector("#listadoJuegos");
     if (oDiv != null) {
         oDiv.remove();
     }
+
+
+    //Oculta el div del inicio "main"
+    document.getElementById("main").style.display = "none";
 
 
 
