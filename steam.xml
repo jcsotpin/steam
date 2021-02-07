@@ -7,7 +7,7 @@
             <genero>Indie</genero>
             <anyo_lanzamiento>2011/09/28</anyo_lanzamiento>
             <precio>9.99</precio>
-            <pegi>+16</pegi>
+            <pegi>16</pegi>
         </juego>
         <juego>
             <id>2</id>
@@ -23,7 +23,7 @@
             <genero>Conduccion</genero>
             <anyo_lanzamiento>2018/09/28</anyo_lanzamiento>
             <precio>27.99</precio>
-            <pegi>+3</pegi>
+            <pegi>3</pegi>
         </juego>
          <juego>
             <id>4</id>
@@ -31,7 +31,7 @@
             <genero>Sandbox</genero>
             <anyo_lanzamiento>2018/10/26</anyo_lanzamiento>
             <precio>59,99</precio>
-            <pegi>+18</pegi>
+            <pegi>18</pegi>
         </juego>
         <juego>
             <id>5</id>

@@ -180,7 +180,7 @@ function validarNIF(){
             document.getElementById("txtNIF").focus();
             bValido = false;
         }
-        sErrores += "\nEl nombre no tiene el formato correcto";
+        sErrores += "\nEl NIF no tiene el formato correcto";
         document.getElementById("txtNIF").classList.add("error");
     }
     else{

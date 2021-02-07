@@ -196,6 +196,7 @@ class Tienda {
             
                 oOption.setAttribute("value", this.juegos[i]["genero"]);
                 oOption.textContent = this.juegos[i]["genero"];
+                
                 if(generoFiltrado == this.juegos[i]["genero"]){
                     oOption.setAttribute("selected", "");
                 }
