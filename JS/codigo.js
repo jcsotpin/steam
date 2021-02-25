@@ -31,7 +31,7 @@ document.getElementById("btnBuscaBiblioteca").addEventListener("click", bibliote
 
 
 let arrayBotonesTienda = document.getElementsByName("btnMandarTienda");
-for(let i = 0; i<arrayBotonesTienda.length; i++){
+for (let i = 0; i < arrayBotonesTienda.length; i++) {
 
     arrayBotonesTienda[i].addEventListener("click", muestraTienda);
 
@@ -41,8 +41,6 @@ for(let i = 0; i<arrayBotonesTienda.length; i++){
 
 
 //Llamada a la Función de Ocultar Formularios para que comiencen ocultos
-ocultarFormularios();
-cargarDatos();
 muestraInicio()
 
 //---------------------------CONTROL VISUAL UI--------------------------------------------//
@@ -510,7 +508,7 @@ function cargarDatos() {
         tienda.registrarSuscripcion(suscripcion);
     }
 
-    alert("Se han cargado los datos correctamente.");
+    //alert("Se han cargado los datos correctamente.");
 }
 
 function filtraGenero() {

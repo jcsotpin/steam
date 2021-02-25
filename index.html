@@ -16,31 +16,34 @@
             background-color: rgb(238, 224, 32);
             border-color: red;
         }
+        
         body {
             background-color: #242424;
             color: #c7d5e0;
         }
-        label{
+        
+        label {
             color: #c7d5e0;
         }
-        .normal{
+        
+        .normal {
             background-color: #c7d5e0;
             border-color: rgb(58, 153, 231);
             color: black;
         }
-
-        .foto{
+        
+        .foto {
             background-color: rgb(145, 145, 145);
-            border-color:  rgb(145, 145, 145);  
+            border-color: rgb(145, 145, 145);
             color: black;
         }
-
-        .linea{
+        
+        .linea {
             background-color: #242424;
         }
-
-        legend{
-            color:  #ffffff;
+        
+        legend {
+            color: #ffffff;
         }
     </style>
 
@@ -68,7 +71,7 @@
                         <li><a href="#" id="btnAltaJuego">Alta Juego</a></li>
                     </ul>
                 </li>
-                
+
             </ul>
         </div>
     </nav>
@@ -79,9 +82,9 @@
         <div class="cuerpo">
 
             <!--Formulario de Alta de Persona-->
-            <form class="form-horizontal" name="formAdministracion" id="formAdministracionSuscriptor" > 
+            <form class="form-horizontal" name="formAdministracion" id="formAdministracionSuscriptor">
                 <fieldset>
-                    <legend >Alta Subscriptor</legend>
+                    <legend>Alta Subscriptor</legend>
 
 
                     <div class="form-group">
@@ -96,7 +99,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="btnDarAltaSuscriptor"></label>
                         <div class="col-md-4">
-                            <input type="button" id="btnDarAltaSuscriptor" name="btnDarAltaSuscriptor" class="btn btn-default" value="Aceptar" />
+                            <input type="button" id="btnDarAltaSuscriptor" name="btnDarAltaSuscriptor" class="btn btn-default normal" value="Aceptar" />
                         </div>
                     </div>
 
@@ -112,7 +115,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="txtEmail">Introduzca su Email:</label>
                         <div class="col-md-4">
-                            <input id="txtEmail" name="txtEmail" type="text" placeholder="" class="form-control input-md">
+                            <input id="txtEmail" name="txtEmail" type="text" placeholder="" class="form-control input-md normal">
                         </div>
                     </div>
 
@@ -121,16 +124,16 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="btnBuscaBiblioteca"></label>
                         <div class="col-md-4">
-                            <input type="button" id="btnBuscaBiblioteca" name="btnBuscaBiblioteca" class="btn btn-info" value="Aceptar" />
+                            <input type="button" id="btnBuscaBiblioteca" name="btnBuscaBiblioteca" class="btn btn-info normal" value="Aceptar" />
                         </div>
                     </div>
 
                 </fieldset>
             </form>
             <!-- Formulario administracion Usuario -->
-            <form class="form-horizontal" name="formAdministracion" id="formAdministracionUsuario" >
+            <form class="form-horizontal" name="formAdministracion" id="formAdministracionUsuario">
                 <fieldset>
-                    <legend >Alta Cliente</legend>
+                    <legend>Alta Cliente</legend>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="txtNombreCliente">Introduzca su nombre: </label>
                         <div class="col-md-4">
@@ -148,7 +151,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="txtFechaCliente">Introduzca su fecha de nacimiento:</label>
                         <div class="col-md-4">
-                            <input id="txtFechaCliente" name="txtFecha" type="text" placeholder="DD/MM/YYYY" class="form-control input-md">
+                            <input id="txtFechaCliente" name="txtFecha" type="text" placeholder="DD/MM/YYYY" class="form-control input-md normal">
                         </div>
                     </div>
                     <div class="form-group">
@@ -179,7 +182,7 @@
             </form>
 
             <!-- Formulario administracion Juegos -->
-            <form class="form-horizontal" name="formAdministracion" id="formAdministracionJuegos" >
+            <form class="form-horizontal" name="formAdministracion" id="formAdministracionJuegos">
                 <fieldset>
                     <legend>Alta Juegos</legend>
                     <div class="form-group">
@@ -199,14 +202,14 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="txtFechaJuego">Introduzca su año de lanzamiento:</label>
                         <div class="col-md-4">
-                            <input id="txtFechaJuego" name="txtFecha" type="text" placeholder="DD/MM/YYYY" class="form-control input-md">
+                            <input id="txtFechaJuego" name="txtFecha" type="text" placeholder="DD/MM/YYYY" class="form-control input-md normal">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="txtPrecio">Introduzca su precio:</label>
                         <div class="col-md-4">
-                            <input id="txtPrecio" name="txtPrecio" type="text" placeholder="00.00" class="form-control input-md">
+                            <input id="txtPrecio" name="txtPrecio" type="text" placeholder="00.00" class="form-control input-md normal">
                         </div>
                     </div>
                     <div class="form-group">
@@ -228,65 +231,68 @@
 
 
             <div id="main" style="background-color: #242424;">
-            <!---->
-            
-            <div class="row">
-                <div class="col-md-12 col-center" style="background-color: #242424; color: #ffffff; ">
-                    <h1 align="center" >Bienvenidos a Steam</h1>
-                </div>
-                
-            </div>
+                <!---->
 
-            <div class="row">
-
-                <div class="col-sm-4 col-md-4 linea">
-                  <div class="thumbnail foto">
-                    <img src="https://cdn140.picsart.com/321987801322201.png" alt="...">
-                    <div class="caption">
-                      <h3>The binding of Isaac</h3>
-                      <p>Cuando la madre de Isaac empieza a escuchar la voz de Dios exigiéndole un sacrificio para demostrar su fe, Isaac huye hacia el sótano para enfrentarse a montones de desquiciados enemigos, hermanos y hermanas perdidos, sus miedos y, finalmente, a su madre.
-                        The Binding of Isaac es un shooter de rol y acción generado aleatoriamente con fuertes elementos de roguelike. Mientras siguen a Isaac en su viaje, los jugadores encontrarán extraños tesoros que cambiarán la forma de Isaac dotándole de habilidades sobrehumanas que le permitirán enfrentarse a hordas de misteriosas criaturas, descubrir secretos y abrirse paso luchando hasta un lugar seguro.</p>
-                      <p>
-                        <a href="#" class="btn btn-primary normal" role="button">Indie</a>
-                        <a href="#" name="btnMandarTienda" class="btn btn-default normal" role="button">+</a>
-                      </p>
+                <div class="row">
+                    <div class="col-md-12 col-center" style="background-color: #242424; color: #ffffff; ">
+                        <h1 align="center">Bienvenidos a Steam</h1>
                     </div>
-                  </div>
+
                 </div>
 
-                <div class="col-sm-4 col-md-4 linea">
-                  <div class="thumbnail foto">
-                    <img src="https://img.discogs.com/iqtTcCW46D8Gl_WRj_5I5AnTogE=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-1170068-1197914299.jpeg.jpg" alt="...">
-                    <div class="caption">
-                      <h3>BioShock</h3>
-                      <p>BioShock es un shooter distinto a todos los que has jugado antes, lleno de armas y tácticas nunca vistas. Tendrás un completo arsenal a tu disposición: desde sencillos revólveres a lanzagranadas y lanzadores de productos químicos, pero también estarás obligado a modificar tu ADN para crear un arma mucho más mortífera: tú. Al inyectarte plásmidos conseguirás superpoderes: lanza descargas eléctricas al agua para electrocutar múltiples enemigos, o congélalos en un bloque de hielo para hacerlos pedazos con un golpe de llave inglesa.
-                        Ningún encuentro se juega de la misma manera, ni dos jugadores jugarán igual.</p>
-                      <p><br>
-                        <a href="#" class="btn btn-primary normal" role="button ">Shooter</a>
-                        <a href="#" name="btnMandarTienda" class="btn btn-default normal " role="button">+</a>
-                      </p>
+                <div class="row">
+
+                    <div class="col-sm-4 col-md-4 linea">
+                        <div class="thumbnail foto">
+                            <img src="https://cdn140.picsart.com/321987801322201.png" alt="...">
+                            <div class="caption">
+                                <h3>The binding of Isaac</h3>
+                                <p>Cuando la madre de Isaac empieza a escuchar la voz de Dios exigiéndole un sacrificio para demostrar su fe, Isaac huye hacia el sótano para enfrentarse a montones de desquiciados enemigos, hermanos y hermanas perdidos, sus
+                                    miedos y, finalmente, a su madre. The Binding of Isaac es un shooter de rol y acción generado aleatoriamente con fuertes elementos de roguelike. Mientras siguen a Isaac en su viaje, los jugadores encontrarán extraños
+                                    tesoros que cambiarán la forma de Isaac dotándole de habilidades sobrehumanas que le permitirán enfrentarse a hordas de misteriosas criaturas, descubrir secretos y abrirse paso luchando hasta un lugar seguro.</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary normal" role="button">Indie</a>
+                                    <a href="#" name="btnMandarTienda" class="btn btn-default normal" role="button">+</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
 
-                <div class="col-sm-4 col-md-4 linea" >
-                  <div class="thumbnail foto">
-                    <img src="https://news.xbox.com/es-latam/wp-content/uploads/sites/4/Forza-Horizon-4-Key-Art-Horizontal-hero-hero-hero-1-small.jpg?fit=300%2C300" alt="...">
-                    <div class="caption ">
-                      <h3>Forza Horizon 4</h3>
-                      <p>Las temporadas dinámicas lo cambian todo en el festival automotriz más grande del mundo. Vaya solo o forme un equipo con otros para explorar la hermosa e histórica Gran Bretaña en un mundo abierto compartido. Recoge, modifica y conduce más de 450 coches. Corre, realiza acrobacias, crea y explora: elige tu propio camino para convertirte en una superestrella de Horizon.</p>
-                      <p><br><br><br>
-                        <a href="#" class="btn btn-primary normal" role="button">Conduccion</a>
-                        <a href="#" name="btnMandarTienda" class="btn btn-default normal" role="button">+</a>
-                      </p>
+                    <div class="col-sm-4 col-md-4 linea">
+                        <div class="thumbnail foto">
+                            <img src="https://img.discogs.com/iqtTcCW46D8Gl_WRj_5I5AnTogE=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-1170068-1197914299.jpeg.jpg" alt="...">
+                            <div class="caption">
+                                <h3>BioShock</h3>
+                                <p>BioShock es un shooter distinto a todos los que has jugado antes, lleno de armas y tácticas nunca vistas. Tendrás un completo arsenal a tu disposición: desde sencillos revólveres a lanzagranadas y lanzadores de productos
+                                    químicos, pero también estarás obligado a modificar tu ADN para crear un arma mucho más mortífera: tú. Al inyectarte plásmidos conseguirás superpoderes: lanza descargas eléctricas al agua para electrocutar múltiples
+                                    enemigos, o congélalos en un bloque de hielo para hacerlos pedazos con un golpe de llave inglesa. Ningún encuentro se juega de la misma manera, ni dos jugadores jugarán igual.</p>
+                                <p><br>
+                                    <a href="#" class="btn btn-primary normal" role="button ">Shooter</a>
+                                    <a href="#" name="btnMandarTienda" class="btn btn-default normal " role="button">+</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+
+                    <div class="col-sm-4 col-md-4 linea">
+                        <div class="thumbnail foto">
+                            <img src="https://news.xbox.com/es-latam/wp-content/uploads/sites/4/Forza-Horizon-4-Key-Art-Horizontal-hero-hero-hero-1-small.jpg?fit=300%2C300" alt="...">
+                            <div class="caption ">
+                                <h3>Forza Horizon 4</h3>
+                                <p>Las temporadas dinámicas lo cambian todo en el festival automotriz más grande del mundo. Vaya solo o forme un equipo con otros para explorar la hermosa e histórica Gran Bretaña en un mundo abierto compartido. Recoge, modifica
+                                    y conduce más de 450 coches. Corre, realiza acrobacias, crea y explora: elige tu propio camino para convertirte en una superestrella de Horizon.</p>
+                                <p><br><br><br>
+                                    <a href="#" class="btn btn-primary normal" role="button">Conduccion</a>
+                                    <a href="#" name="btnMandarTienda" class="btn btn-default normal" role="button">+</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-            </div>
-                
 
-            <!---->
+                <!---->
             </div>
 
 

@@ -54,7 +54,7 @@ class Tienda {
     registrarSuscripcion(suscripcion, fechaActual) {
 
             let oSuscripcionExistente = null;
-            
+
 
             oSuscripcionExistente = _buscarSuscripcion(suscripcion.idCliente, fechaActual);
 
@@ -152,7 +152,7 @@ class Tienda {
             cell.textContent = "+" + this.juegos[i]["pegi"];
             cell = row.insertCell(-1);
             btnCompra.setAttribute("value", this.juegos[i]["id_juego"]);
-            btnCompra.addEventListener("click", this.mostrarFormCompra);
+            btnCompra.addEventListener("click", this.listarDatosCompra);
             cell.appendChild(btnCompra);
 
         }
@@ -266,7 +266,7 @@ class Tienda {
                         cell.textContent = this.juegos[i]["pegi"];
                         cell = row.insertCell(-1);
                         btnCompra.setAttribute("value", this.juegos[i]["id_juego"]);
-                        btnCompra.addEventListener("click", this.mostrarFormCompra);
+                        btnCompra.addEventListener("click", this.listarDatosCompra);
                         cell.appendChild(btnCompra);
                     }
                 }
@@ -302,7 +302,7 @@ class Tienda {
         var tbody = document.createElement("TBODY");
         oTabla.appendChild(tbody);
 
-       
+
         for (var i = 0; i < this.juegos.length; i++) {
 
 
@@ -339,7 +339,7 @@ class Tienda {
         document.body.appendChild(oDiv);
     }
 
-    mostrarFormCompra(oEvento) {
+    listarDatosCompra(oEvento) {
 
         ocultarFormularios();
 
@@ -362,6 +362,7 @@ class Tienda {
 
         let inputEmail = document.createElement("input");
         inputEmail.placeholder = "EMAIL";
+        inputEmail.classList.add("normal");
 
         let labelNombreJuego = document.createElement("label");
         labelNombreJuego.textContent = "Titulo:"
@@ -397,7 +398,7 @@ class Tienda {
 
                 let oCompra = new Compra(iNumCompras + 1, oCliente["iId"], arrayJuego["id_juego"], new Date(), arrayJuego["precio"]);
                 introduceCompra(oCompra);
-                alert("Compra Realziada Correctamente");
+                alert("Compra Realizada Correctamente");
                 ocultarFormularios();
             } else {
                 alert("El cliente no existe");
